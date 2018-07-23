@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Gender {
+public class Roles {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,34 +14,29 @@ public class Gender {
 
     private String name;
 
-    public Gender(String name) {
+    public Roles() {}
+
+    public Roles(String name)
+    {
         this.name = name;
     }
 
-    public Long getId(){
-        return id;
-    }
+    public Long getId() { return id; }
 
-    public void setId(){
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Gender gender = (Gender) o;
+        Roles roles = (Roles) o;
 
-        return id.equals(gender.id);
+        return id.equals(roles.id);
     }
 
     @Override
