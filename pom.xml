@@ -67,12 +67,6 @@
 			<artifactId>thymeleaf-spring5</artifactId>
 			<version>3.0.9.RELEASE</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5 -->
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf-spring5</artifactId>
-			<version>3.0.9.RELEASE</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-java8time -->
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
@@ -84,6 +78,13 @@
 		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring3 -->
 
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>SBER NEW REPO</id>
+			<url>http://central.maven.org/maven2</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
