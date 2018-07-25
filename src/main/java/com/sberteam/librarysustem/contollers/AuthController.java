@@ -12,4 +12,10 @@ public class AuthController {
         return "login";
     }
 
+    @GetMapping(path = "index")
+    public String getIndexPage() {
+        return "index";
+    }
+
+    
 }

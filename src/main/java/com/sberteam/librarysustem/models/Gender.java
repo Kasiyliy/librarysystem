@@ -26,8 +26,8 @@ public class Gender {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public static String getName() {
+        return "";
     }
 
     public void setName(String name) {
