@@ -1,5 +1,7 @@
 package com.sberteam.librarysustem.models;
 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Date;
 import java.util.Set;
@@ -7,7 +9,9 @@ import java.util.Set;
 @Entity
 public class AuthenticableUsers extends BasicUsers {
 
+
     private String username;
+
     private String password;
 
     public AuthenticableUsers() {
