@@ -4,12 +4,14 @@ import com.sberteam.librarysustem.models.AuthenticableUsers;
 import com.sberteam.librarysustem.models.Roles;
 import com.sberteam.librarysustem.repositories.AuthenticableUsersRepository;
 import com.sberteam.librarysustem.repositories.BasicUsersRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -40,5 +42,10 @@ public class CustomUserDetailsService implements UserDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
         return new ArrayList<>(grantedAuthorities);
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

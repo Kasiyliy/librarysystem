@@ -23,12 +23,15 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter{
         http
                 .authorizeRequests()
                     .antMatchers( "/home").permitAll()
+                    .antMatchers("/css/**").permitAll()
+                    .antMatchers("/js/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
                     .loginPage("/login").permitAll()
                     .and()
                 .logout().permitAll();
+
     }
 
     @Override

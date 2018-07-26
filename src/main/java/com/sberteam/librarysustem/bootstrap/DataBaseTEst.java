@@ -8,6 +8,7 @@ import com.sberteam.librarysustem.repositories.BasicUsersRepository;
 import com.sberteam.librarysustem.repositories.RolesRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -37,7 +38,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         user.setPatronomyc("batyaUsera");
         user.setName("user");
         user.setUsername("kasya");
-        user.setPassword("123");
+        user.setPassword(new BCryptPasswordEncoder().encode("123"));
         user.setName("USER AUTH");
         user.setSurname("USER AUTHs");
         user.setRoles(new HashSet<Roles>());
