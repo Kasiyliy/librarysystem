@@ -39,12 +39,4 @@ public class AuthenticableUsers extends BasicUsers {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-
-        return  "AuthenticableUsers{" +super.toString()+
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }

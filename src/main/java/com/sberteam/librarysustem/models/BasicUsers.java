@@ -178,11 +178,5 @@ public class BasicUsers {
         this.active = active;
     }
 
-    @Override
-    public String toString() {
-        return "BasicUsers{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                '}';
-    }
+
 }
