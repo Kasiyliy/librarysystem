@@ -14,7 +14,7 @@ public class Parties
     private Date deliveryDate;
 
     @ManyToOne
-    @JoinColumn(name = "doctypes_id")
+    @JoinColumn(name = "parties_srcDocTypes")
     private DocTypes sourceDocType;
 
     private String note;
@@ -22,7 +22,7 @@ public class Parties
     private Date dateByDoc;
 
     @ManyToOne
-    @JoinColumn(name = "doctypes_id")
+    @JoinColumn(name = "parties_doctypes")
     private DocTypes docTypes; //New
 
     private Long count;
