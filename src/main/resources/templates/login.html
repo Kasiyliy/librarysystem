@@ -1,42 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <link type="text/css" href="../css/bootstrap.css"/>
     <title>library-system</title>
+    <headlinks th:replace = "fragments/headlinks"></headlinks>
 </head>
 
 <body>
 <div class="container-scroller">
     <div class="container-fluid">
-        <div class="row">
-            <div class="content-wrapper full-page-wrapper d-flex align-items-center auth-pages">
-                <div class="card col-lg-4 mx-auto">
-                    <div class="card-body px-5 py-5">
-                        <h3 class="card-title text-left mb-3">Login</h3>
-                        <form>
+        <div class="row mx-auto">
+            <div class="content-wrapper  d-flex align-items-center mx-auto">
+                <div class="card mx-auto my-5 ">
+                    <div class="card-body px-5 py-4">
+                        <h3 class="card-title text-left mb-3">Авторизация</h3>
+                        <div th:if="${param.error}">
+                            Invalid username and password.
+                        </div>
+                        <div th:if="${param.logout}">
+                            You have been logged out.
+                        </div>
+                        <form th:action="@{/login}" method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control p_input" placeholder="Username">
+                                <input type="text" class="form-control p_input" name="username" placeholder="Username">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control p_input" placeholder="Password">
+                                <input type="password" class="form-control p_input" name="password" placeholder="Password">
                             </div>
                             <div class="form-group d-flex align-items-center justify-content-between">
-                                <div class="form-check"><label><input type="checkbox" class="form-check-input">Remember me</label></div>
-                                <a href="#" class="forgot-pass">Forgot password</a>
+                                <div class="form-check mr-3"><label><input type="checkbox" class="form-check-input">Запомнить меня</label></div>
+                                <a href="#" class="forgot-pass">Забыли пароль?</a>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary btn-block enter-btn">LOG IN</button>
+                                <button type="submit" class="btn btn-primary btn-block enter-btn">ВОЙТИ</button>
                             </div>
-                            <p class="Or-login-with my-3">Or login with</p>
-                            <a href="#" class="facebook-login btn btn-facebook btn-block">Sign in with Facebook</a>
-                            <a href="#" class="google-login btn btn-google btn-block">Sign in with Google+</a>
-                            <a href="#" class="google-login btn btn-create-account btn-block">Create An Account</a>
                         </form>
                     </div>
                 </div>

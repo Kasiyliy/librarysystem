@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-public class Users {
+public class BasicUsers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,10 +17,6 @@ public class Users {
 
     @Column(nullable = true)
     private String patronomyc;
-
-    private String email;
-
-    private String password;
 
     private Date birthDate;
 
@@ -34,7 +30,8 @@ public class Users {
     @JoinColumn(name="gender_id")
     private Gender gender;
 
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Roles> roles;
 
     private Date createdDate;
@@ -44,23 +41,34 @@ public class Users {
     @Column(nullable = false)
     private boolean active = true;
 
-    public Users(){};
+    public BasicUsers(){};
 
-    public Users(String name, String surname, String patronomyc, String email, String password,
-                 Date birthDate, Long passportNumber, String address,
-                 String phoneNumber, Gender gender, Date createdDate,
-                 Date updatedDate, boolean active)
-    {
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BasicUsers basicUsers = (BasicUsers) o;
+
+        return id.equals(basicUsers.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    public BasicUsers(String name, String surname, String patronomyc, Date birthDate, Long passportNumber, String address, String phoneNumber, Gender gender, Set<Roles> roles, Date createdDate, Date updatedDate, boolean active) {
         this.name = name;
         this.surname = surname;
         this.patronomyc = patronomyc;
-        this.email = email;
-        this.password = password;
         this.birthDate = birthDate;
         this.passportNumber = passportNumber;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
+        this.roles = roles;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.active = active;
@@ -96,22 +104,6 @@ public class Users {
 
     public void setPatronomyc(String patronomyc) {
         this.patronomyc = patronomyc;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Date getBirthDate() {
@@ -154,6 +146,14 @@ public class Users {
         this.gender = gender;
     }
 
+    public Set<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Roles> roles) {
+        this.roles = roles;
+    }
+
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -166,24 +166,17 @@ public class Users {
         return updatedDate;
     }
 
-    public void setUpdatedDate(Date updatedDate) { this.updatedDate = updatedDate; }
-
-    public boolean isActive() { return active; }
-
-    public void setActive(boolean active) { this.active = active; }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Users users = (Users) o;
-
-        return id.equals(users.id);
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
+    public boolean isActive() {
+        return active;
     }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+
 }

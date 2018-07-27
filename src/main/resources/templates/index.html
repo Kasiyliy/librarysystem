@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="ru" th="http://www.thymeleaf.org">
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Library-System</title>
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <div th:replace = "fragments/headLinks"></div>
 </head>
+
 <body>
 
+
+    <nav th:replace="fragments/sidebar :: nav"></nav>
+
+    <div id="wrapper">
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
 </body>
+
 </html>
