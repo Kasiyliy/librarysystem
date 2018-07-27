@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.rmi.NoSuchObjectException;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 
 
 @RestController
@@ -29,9 +32,13 @@ public class UserRestController {
         return users;
     }
 
-    @GetMapping(path = "/users/getUserById/{id}",produces = "application/json")
-    public BasicUsers getUser(@PathVariable Long id){
-
-        return basicUsersRepository.findById(id).get();
+    @GetMapping(path = "/users/getUserById",produces = "application/json")
+    public BasicUsers getUserById(@RequestParam Long id){
+        Optional<BasicUsers> user = basicUsersRepository.findById(id);
+        if(basicUsersRepository.findById(id).isPresent()){
+            return user.get();
+        }
+        else return null;
     }
+
 }
