@@ -1,20 +1,37 @@
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard Template for Bootstrap</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+
     <div th:replace = "fragments/headLinks"></div>
 </head>
 
 <body>
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
-   <nav th:replace="fragments/sidebar :: nav"></nav>
 
-    <div id="app" >
-        <!-- /#page-content-wrapper -->
+<div class="container-fluid">
+    <div th:replace = "fragments/nav"></div>
+
+    <div class="row">
+
+        <div th:replace = "fragments/sidebar"></div>
+
+
+        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" >
+
+            <h1>Hey there!</h1>
+
+        </main>
     </div>
-<script src = "/js/vue.js"></script>
+</div>
 </body>
-
 </html>
