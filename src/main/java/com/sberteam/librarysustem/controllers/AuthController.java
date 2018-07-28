@@ -22,11 +22,6 @@ public class AuthController {
         return "auth/login";
     }
 
-    @GetMapping(path = "/index")
-    public String getIndexPage() {
-        return "index";
-    }
-
     @GetMapping(path = "/registration")
     public String getRegistrationPage(){ return "auth/registration";}
 
