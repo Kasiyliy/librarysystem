@@ -1,9 +1,6 @@
 package com.sberteam.librarysustem.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Books {
@@ -13,11 +10,11 @@ public class Books {
 
     private String name;
 
-    public Books() {
-    }
-
     public Books(String name) {
         this.name = name;
+    }
+
+    public Books() {
     }
 
     public Long getId() {
@@ -35,4 +32,5 @@ public class Books {
     public void setName(String name) {
         this.name = name;
     }
+
 }
