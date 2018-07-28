@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication
 @EnableAutoConfiguration
 @Configuration
-public class LibrarysustemApplication {
+public class LibrarysystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LibrarysustemApplication.class, args);
+		SpringApplication.run(LibrarysystemApplication.class, args);
 	}
 }

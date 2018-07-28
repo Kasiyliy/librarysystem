@@ -14,7 +14,7 @@ public class Parties
     private Date deliveryDate;
 
     @ManyToOne
-    @JoinColumn(name = "doctypes_id")
+    @JoinColumn(name = "source_doctypes_id")
     private DocTypes sourceDocType;
 
     private String note;
