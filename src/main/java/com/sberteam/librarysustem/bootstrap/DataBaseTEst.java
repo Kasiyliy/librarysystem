@@ -1,8 +1,6 @@
 package com.sberteam.librarysustem.bootstrap;
 
-import com.sberteam.librarysustem.models.AuthenticableUsers;
-import com.sberteam.librarysustem.models.BasicUsers;
-import com.sberteam.librarysustem.models.Roles;
+import com.sberteam.librarysustem.models.*;
 import com.sberteam.librarysustem.repositories.*;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -14,6 +12,18 @@ import java.util.*;
 @Component
 public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> {
 
+    public DataBaseTEst(AuthenticableUsersRepository authenticableUsersRepository, BasicUsersRepository basicUsersRepository,
+                        RolesRepository rolesRepository, DocTypesRepository docTypesRepository,
+                        BooksRepositories booksRepositories, PartiesRepository partiesRepository, ProvidersRepository providersRepository) {
+        this.authenticableUsersRepository = authenticableUsersRepository;
+        this.basicUsersRepository = basicUsersRepository;
+        this.rolesRepository = rolesRepository;
+        this.docTypesRepository = docTypesRepository;
+        this.booksRepositories = booksRepositories;
+        this.partiesRepository = partiesRepository;
+        this.providersRepository = providersRepository;
+    }
+
     private AuthenticableUsersRepository authenticableUsersRepository;
     private BasicUsersRepository basicUsersRepository;
     private RolesRepository rolesRepository;
@@ -23,11 +33,6 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
     private ProvidersRepository providersRepository;
 
 
-    public DataBaseTEst(AuthenticableUsersRepository authenticableUsersRepository, BasicUsersRepository basicUsersRepository, RolesRepository rolesRepository) {
-        this.authenticableUsersRepository = authenticableUsersRepository;
-        this.basicUsersRepository = basicUsersRepository;
-        this.rolesRepository = rolesRepository;
-    }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -35,7 +40,6 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         Roles roles = new Roles();
         roles.setName("ROLE_GUEST");
         rolesRepository.save(roles);
-
 
         AuthenticableUsers user = new AuthenticableUsers();
         user.setPatronomyc("batyaUsera");
@@ -51,11 +55,21 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         basicUser.setName("kasya");
         basicUser.setSurname("kasyaS");
 
-
-
         authenticableUsersRepository.save(user);
         basicUsersRepository.save(basicUser);
+        ///////////////////////////////////
+        DocTypes docTypes = new DocTypes("Дар");
+        docTypesRepository.save(docTypes);
 
+        Providers provider = new Providers("Консульство Латвии");
+        providersRepository.save(provider);
 
+        Set<Books> books = new HashSet<>();
+        books.add(new Books("Name"));
+        booksRepositories.saveAll(books);
+
+        Parties parties = new Parties(new Date(), docTypes, "Note",new Date(),docTypes, 10l,1000f,provider,"Дома пушкина",
+                "Куда то вдаль",books);
+        partiesRepository.save(parties);
     }
 }
