@@ -18,6 +18,11 @@ public class Gender {
         this.name = name;
     }
 
+    public Gender() {
+        this.name = name;
+    }
+
+
     public Long getId(){
         return id;
     }

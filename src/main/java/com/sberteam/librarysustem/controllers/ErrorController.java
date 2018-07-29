@@ -15,8 +15,8 @@ public class ErrorController {
         return new ModelAndView("error/404");
     }
 
-    @ExceptionHandler(Exception.class)
-    public ModelAndView handleError(HttpServletRequest request, Exception e)   {
-        return new ModelAndView("error/500");
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView handleError(HttpServletRequest request, Exception e)   {
+//        return new ModelAndView("error/500");
+//    }
 }

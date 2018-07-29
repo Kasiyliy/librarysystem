@@ -14,12 +14,12 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
 
     public DataBaseTEst(AuthenticableUsersRepository authenticableUsersRepository, BasicUsersRepository basicUsersRepository,
                         RolesRepository rolesRepository, DocTypesRepository docTypesRepository,
-                        BooksRepositories booksRepositories, PartiesRepository partiesRepository, ProvidersRepository providersRepository) {
+                        BooksRepository booksRepository, PartiesRepository partiesRepository, ProvidersRepository providersRepository) {
         this.authenticableUsersRepository = authenticableUsersRepository;
         this.basicUsersRepository = basicUsersRepository;
         this.rolesRepository = rolesRepository;
         this.docTypesRepository = docTypesRepository;
-        this.booksRepositories = booksRepositories;
+        this.booksRepository = booksRepository;
         this.partiesRepository = partiesRepository;
         this.providersRepository = providersRepository;
     }
@@ -28,7 +28,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
     private BasicUsersRepository basicUsersRepository;
     private RolesRepository rolesRepository;
     private DocTypesRepository docTypesRepository;
-    private BooksRepositories booksRepositories;
+    private BooksRepository booksRepository;
     private PartiesRepository partiesRepository;
     private ProvidersRepository providersRepository;
 
@@ -64,12 +64,16 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         Providers provider = new Providers("Консульство Латвии");
         providersRepository.save(provider);
 
-        Set<Books> books = new HashSet<>();
-        books.add(new Books("Name"));
-        booksRepositories.saveAll(books);
-
-        Parties parties = new Parties(new Date(), docTypes, "Note",new Date(),docTypes, 10l,1000f,provider,"Дома пушкина",
-                "Куда то вдаль",books);
+        Parties parties = new Parties("Party number "+ new Date() ,new Date(), docTypes, "Note",new Date(),docTypes, provider,"Дома пушкина",
+                "Куда то вдаль");
         partiesRepository.save(parties);
+
+
+
+        Books book= new Books();
+        book.setName("Abay");
+        book.setParty(parties);
+        booksRepository.save(book);
+
     }
 }
