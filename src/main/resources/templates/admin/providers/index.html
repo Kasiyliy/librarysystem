@@ -29,12 +29,12 @@
 
                 <div class="jumbotron">
                     <h3 class="mb-0 text-center">
-                        <p class="text-dark" href="#">Добавление книги</p>
+                        <p class="text-dark" href="#">Добавление поставщика</p>
                     </h3>
-                    <form class="form horizontal-form" th:action="@{/books/add}" method="post">
+                    <form class="form horizontal-form" th:action="@{/providers/add}" method="post">
 
                         <div class="form-group">
-                            <label class="text-muted">Название книги</label>
+                            <label class="text-muted">Название поставщика</label>
                             <input type="text" class="form-control p_input" name="name" placeholder="Название" required>
                         </div>
 
@@ -54,11 +54,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="book : ${books}">
-                        <td th:text="${book.id}"></td>
-                        <td th:text="${book.name}"></td>
-                        <td><a th:href="@{/books/delete/{id}(id=${book.id})}">Удалить</a></td>
-                        <td><a th:href="@{/books/update/{id}(id=${book.id})}">Обновить</a></td>
+                    <tr th:each="provider : ${providers}">
+                        <td th:text="${provider.id}"></td>
+                        <td th:text="${provider.name}"></td>
+                        <td><a th:href="@{/providers/delete/{id}(id=${provider.id})}">Удалить</a></td>
+                        <td><a th:href="@{/providers/update/{id}(id=${provider.id})}">Обновить</a></td>
                     </tr>
                 </tbody>
             </table>

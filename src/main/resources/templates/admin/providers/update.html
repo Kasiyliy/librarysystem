@@ -26,12 +26,12 @@
         <div th:replace = "fragments/sidebar"></div>
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" >
-            <a class="btn btn-info" href="/books">Назад</a>
-            <form class="form horizontal-form" th:action="@{/books/update/{id}(id=${book.id})}" method="post">
-                <h3 class="text-center" th:text="'Обновление книги #' + ${book.id} +' '+  ${book.name}"></h3>
+            <a class="btn btn-info" href="/providers">Назад</a>
+            <form class="form horizontal-form" th:action="@{/providers/update/{id}(id=${provider.id})}" method="post">
+                <h3 class="text-center" th:text="'Обновление поставщика #' + ${provider.id} +' '+  ${provider.name}"></h3>
                 <div class="form-group">
-                    <label class="text-muted">Название книги</label>
-                    <input type="text" th:value="${book.name}" class="form-control p_input" name="name" placeholder="Название" required>
+                    <label class="text-muted">Название поставщика</label>
+                    <input type="text" th:value="${provider.name}" class="form-control p_input" name="name" placeholder="Название" required>
                 </div>
 
                 <div class="text-center">

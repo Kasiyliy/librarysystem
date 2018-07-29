@@ -63,7 +63,7 @@ public class BooksController {
     }
 
     @PostMapping(path = "/update/{id}")
-    public String updateBook(@RequestParam(name="name")String name,@RequestParam(value = "id" )Long id){
+    public String updateBook(@RequestParam(name="name")String name,@PathVariable(value = "id" )Long id){
         Books books = booksRepositories.findById(id).get();
         books.setName(name);
         booksRepositories.save(books);
