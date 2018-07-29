@@ -1,5 +1,7 @@
 package com.sberteam.librarysustem.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -11,6 +13,9 @@ public class Parties
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date deliveryDate;
 
     @ManyToOne
@@ -19,15 +24,13 @@ public class Parties
 
     private String note;
 
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateByDoc;
 
     @ManyToOne
     @JoinColumn(name = "doctypes_id")
     private DocTypes docTypes; //New
-
-    private Long count;
-
-    private Float sum;
 
     @ManyToOne
     @JoinColumn(name = "provider_id")
@@ -37,23 +40,16 @@ public class Parties
 
     private String transfer;
 
-    @OneToMany
-    @JoinColumn(name = "parties_books")
-    private Set<Books> books;
-
-    public Parties(Date deliveryDate, DocTypes sourceDocType, String note, Date dateByDoc, DocTypes docTypes, Long count, Float sum, Providers provider, String address,
-                   String transfer, Set<Books> books) {
+    public Parties(String name, Date deliveryDate, DocTypes sourceDocType, String note, Date dateByDoc, DocTypes docTypes, Providers provider, String address, String transfer) {
+        this.name = name;
         this.deliveryDate = deliveryDate;
         this.sourceDocType = sourceDocType;
         this.note = note;
         this.dateByDoc = dateByDoc;
         this.docTypes = docTypes;
-        this.count = count;
-        this.sum = sum;
         this.provider = provider;
         this.address = address;
         this.transfer = transfer;
-        this.books = books;
     }
 
     public Parties() {
@@ -65,6 +61,14 @@ public class Parties
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getDeliveryDate() {
@@ -107,22 +111,6 @@ public class Parties
         this.docTypes = docTypes;
     }
 
-    public Long getCount() {
-        return count;
-    }
-
-    public void setCount(Long count) {
-        this.count = count;
-    }
-
-    public Float getSum() {
-        return sum;
-    }
-
-    public void setSum(Float sum) {
-        this.sum = sum;
-    }
-
     public Providers getProvider() {
         return provider;
     }
@@ -147,11 +135,4 @@ public class Parties
         this.transfer = transfer;
     }
 
-    public Set<Books> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Books> books) {
-        this.books = books;
-    }
 }
