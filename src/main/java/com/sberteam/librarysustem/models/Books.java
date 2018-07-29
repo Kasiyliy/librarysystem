@@ -10,11 +10,24 @@ public class Books {
 
     private String name;
 
-    public Books(String name) {
+    @ManyToOne
+    @JoinColumn(name="party_id")
+    private Parties party;
+
+    public Books(String name, Parties party) {
         this.name = name;
+        this.party = party;
     }
 
     public Books() {
+    }
+
+    public Parties getParty() {
+        return party;
+    }
+
+    public void setParty(Parties party) {
+        this.party = party;
     }
 
     public Long getId() {

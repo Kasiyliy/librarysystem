@@ -29,21 +29,21 @@ public class RolesController {
     @GetMapping(path = "/{id}")
     public ModelAndView single(@PathVariable(value = "id" )Long id) {
         ModelAndView mw = new ModelAndView("admin/roles/single");
-        mw.addObject("provider", rolesRepository.findById(id).get());
+        mw.addObject("role", rolesRepository.findById(id).get());
         return mw;
     }
 
     @GetMapping(path = "/delete/{id}")
     public ModelAndView delete(@PathVariable(value = "id" )Long id) {
         ModelAndView mw = new ModelAndView("admin/roles/delete");
-        mw.addObject("provider", rolesRepository.findById(id).get());
+        mw.addObject("role", rolesRepository.findById(id).get());
         return mw;
     }
 
     @GetMapping(path = "/update/{id}")
     public ModelAndView update(@PathVariable(value = "id" )Long id) {
         ModelAndView mw = new ModelAndView("admin/roles/update");
-        mw.addObject("provider", rolesRepository.findById(id).get());
+        mw.addObject("role", rolesRepository.findById(id).get());
         return mw;
     }
 
