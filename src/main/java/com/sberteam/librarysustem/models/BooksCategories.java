@@ -6,18 +6,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class DocTypes {
+public class BooksCategories {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    public DocTypes() {
+    public BooksCategories(String name) {
+        this.name = name;
     }
 
-    public DocTypes(String name) {
-        this.name = name;
+    public BooksCategories() {
     }
 
     public Long getId() {
@@ -41,9 +41,9 @@ public class DocTypes {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DocTypes docTypes = (DocTypes) o;
+        BooksCategories that = (BooksCategories) o;
 
-        return id.equals(docTypes.id);
+        return id.equals(that.id);
     }
 
     @Override

@@ -1,11 +1,15 @@
 package com.sberteam.librarysustem.controllers;
 
 import com.sberteam.librarysustem.models.Books;
-import com.sberteam.librarysustem.repositories.BooksRepository;
-import com.sberteam.librarysustem.repositories.PartiesRepository;
+import com.sberteam.librarysustem.models.BooksCategories;
+import com.sberteam.librarysustem.models.BooksMaps;
+import com.sberteam.librarysustem.repositories.*;
+import com.sberteam.librarysustem.utils.CommonUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
 
 @Controller
 @RequestMapping(value = "/books")
@@ -13,11 +17,20 @@ public class BooksController {
 
     BooksRepository booksRepository;
     PartiesRepository partiesRepository;
+    BooksCategoriesRepository booksCategoriesRepository;
+    BooksLevelsRepository booksLevelsRepository;
+    BooksMapsRepository booksMapsRepository;
 
-    public BooksController(BooksRepository booksRepository, PartiesRepository partiesRepository) {
+    public BooksController(BooksRepository booksRepository, PartiesRepository partiesRepository, BooksCategoriesRepository booksCategoriesRepository,
+                           BooksLevelsRepository booksLevelsRepository, BooksMapsRepository booksMapsRepository) {
         this.booksRepository = booksRepository;
         this.partiesRepository = partiesRepository;
+        this.booksCategoriesRepository = booksCategoriesRepository;
+        this.booksLevelsRepository = booksLevelsRepository;
+        this.booksMapsRepository = booksMapsRepository;
     }
+
+
 
     @GetMapping(path = {"/" , ""})
     public ModelAndView index() {
@@ -25,7 +38,9 @@ public class BooksController {
         ModelAndView mw = new ModelAndView("admin/books/index");
         mw.addObject("books", booksRepository.findAll());
         mw.addObject("parties", partiesRepository.findAll());
-
+        mw.addObject("categories",booksCategoriesRepository.findAll());
+        mw.addObject("levels",booksLevelsRepository.findAll());
+        mw.addObject("maps",booksMapsRepository.findAll());
         return mw;
     }
 
@@ -56,10 +71,27 @@ public class BooksController {
 
 
     @PostMapping(path = "/add")
-    public String addBook(@RequestParam(name="name")String name, @RequestParam(name="party_id")Long partyID){
-        Books books = new Books();
-        books.setName(name);
-        books.setParty(partiesRepository.findById(partyID).get());
+    public String addBook(@RequestParam(name="name")String name,
+                          @RequestParam(name="party_id")Long partyID,
+                          @RequestParam(name = "author")String author,
+                          @RequestParam(name = "category_id") Long category_id,
+                          @RequestParam(name = "publisher") String publisher,
+                          @RequestParam(name = "year") Long year,
+                          @RequestParam(name = "publisher_place") String publication_place,
+                          @RequestParam(name = "tom_number") Long tom_number,
+                          @RequestParam(name = "map_id") Long map_id,
+                          @RequestParam(name = "level_id") Long level_id,
+                          @RequestParam(name = "count") Integer count,
+                          @RequestParam(name = "price") Float price,
+                          @RequestParam(name = "transfer_number") Long transfer_number
+                          )
+
+    {
+             Books books = new Books(name,author,booksCategoriesRepository.findById(category_id).get(),publisher, CommonUtils.getDateFromString(year+"-01-01"),publication_place,tom_number,
+                                booksMapsRepository.findById(map_id).get(),booksLevelsRepository.findById(level_id).get(),count,price,count*price,transfer_number,
+                                partiesRepository.findById(partyID).get()
+                );
+
         booksRepository.save(books);
         return "redirect:/books";
     }
