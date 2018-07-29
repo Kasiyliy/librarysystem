@@ -8,13 +8,13 @@ import java.util.Set;
 public class Parties
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Date deliveryDate;
 
     @ManyToOne
-    @JoinColumn(name = "parties_srcDocTypes")
+    @JoinColumn(name = "source_doctypes_id")
     private DocTypes sourceDocType;
 
     private String note;
@@ -22,7 +22,7 @@ public class Parties
     private Date dateByDoc;
 
     @ManyToOne
-    @JoinColumn(name = "parties_doctypes")
+    @JoinColumn(name = "doctypes_id")
     private DocTypes docTypes; //New
 
     private Long count;

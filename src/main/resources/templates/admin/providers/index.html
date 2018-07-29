@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard Template for Bootstrap</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+
+    <div th:replace = "fragments/headLinks"></div>
+</head>
+
+<body>
+
+
+<div class="container-fluid">
+    <div th:replace = "fragments/nav"></div>
+
+    <div class="row">
+
+        <div th:replace = "fragments/sidebar"></div>
+
+        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" >
+
+                <div class="jumbotron">
+                    <h3 class="mb-0 text-center">
+                        <p class="text-dark" href="#">Добавление поставщика</p>
+                    </h3>
+                    <form class="form horizontal-form" th:action="@{/providers/add}" method="post">
+
+                        <div class="form-group">
+                            <label class="text-muted">Название поставщика</label>
+                            <input type="text" class="form-control p_input" name="name" placeholder="Название" required>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="form-control btn-success">Добавить</button>
+                        </div>
+                    </form>
+                </div>
+
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Обновить</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="provider : ${providers}">
+                        <td th:text="${provider.id}"></td>
+                        <td th:text="${provider.name}"></td>
+                        <td><a th:href="@{/providers/delete/{id}(id=${provider.id})}">Удалить</a></td>
+                        <td><a th:href="@{/providers/update/{id}(id=${provider.id})}">Обновить</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+</div>
+</body>
+</html>

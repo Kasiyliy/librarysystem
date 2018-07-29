@@ -2,18 +2,13 @@ package com.sberteam.librarysustem.RESTControllers;
 
 import com.sberteam.librarysustem.models.BasicUsers;
 import com.sberteam.librarysustem.repositories.BasicUsersRepository;
-import org.springframework.http.codec.json.Jackson2JsonDecoder;
-import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.rmi.NoSuchObjectException;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Consumer;
 
 
 @RestController
