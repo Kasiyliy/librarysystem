@@ -135,4 +135,18 @@ public class Parties
         this.transfer = transfer;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Parties parties = (Parties) o;
+
+        return id.equals(parties.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }
