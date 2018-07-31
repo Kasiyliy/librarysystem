@@ -13,6 +13,9 @@ import java.util.Date;
 
 @Controller
 @RequestMapping(value = "/books")
+/*
+* В принципе можно убрать удаление,добавление. написан REST controller
+* */
 public class BooksController {
 
     BooksRepository booksRepository;
@@ -88,7 +91,7 @@ public class BooksController {
 
     {
              Books books = new Books(name,author,booksCategoriesRepository.findById(category_id).get(),publisher, CommonUtils.getDateFromString(year+"-01-01"),publication_place,tom_number,
-                                booksMapsRepository.findById(map_id).get(),booksLevelsRepository.findById(level_id).get(),count,price,count*price,transfer_number,
+                                booksMapsRepository.findById(map_id).get(),booksLevelsRepository.findById(level_id).get(),count,price,transfer_number,
                                 partiesRepository.findById(partyID).get()
                 );
 

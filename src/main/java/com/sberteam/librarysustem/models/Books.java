@@ -48,7 +48,6 @@ public class Books {
 
     @ManyToOne
     @JoinColumn(name="party_id")
-    @JsonView(View.Internal.class)
     private Parties party;
 
     public Books() {
@@ -57,7 +56,7 @@ public class Books {
 
     public Books(String name, String author, BooksCategories bookCategory, String publisher,
                  Date year, String publicationPlace, Long tom_number, BooksMaps map, BooksLevels level,
-                 Integer count, Float price, Float sum, Long transferNumber, Parties party) {
+                 Integer count, Float price, Long transferNumber, Parties party) {
         this.name = name;
         this.author = author;
         this.bookCategory = bookCategory;
@@ -69,7 +68,7 @@ public class Books {
         this.level = level;
         this.count = count;
         this.price = price;
-        this.sum = sum;
+        this.sum = count*price;
         this.transferNumber = transferNumber;
         this.party = party;
     }
@@ -98,7 +97,6 @@ public class Books {
         this.author = author;
     }
 
-    @JsonView(View.Public.class)
     public BooksCategories getBookCategory() {
         return bookCategory;
     }
@@ -176,7 +174,7 @@ public class Books {
     }
 
     public void setSum(Float sum) {
-        this.sum = sum;
+        this.sum = this.price*this.count;
     }
 
     public Long getTransferNumber() {

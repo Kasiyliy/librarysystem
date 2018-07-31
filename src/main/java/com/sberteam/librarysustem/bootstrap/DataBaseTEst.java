@@ -88,7 +88,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
 
         Books books = new Books("name","author",booksCategory,"publisher",new Date(),
                 "place",1222333l, booksMap,booksLevels,
-                4  , 25f, 4f*25, 23l, parties);
+                4  , 25f, 23l, parties);
 
         booksRepository.save(books);
     }

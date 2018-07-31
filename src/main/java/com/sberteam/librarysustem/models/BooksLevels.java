@@ -12,7 +12,6 @@ public class BooksLevels {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(View.Public.class)
     private Long id;
 
     private String name;
