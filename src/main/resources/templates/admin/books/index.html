@@ -14,9 +14,10 @@
 
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
     <script src="https:/unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
     <div th:replace="fragments/headLinks"></div>
 </head>
@@ -102,7 +103,9 @@
                     </div>
                 </form>
             </div>
--->
+--> <div class="text-center">
+            <button type="submit" class="form-control btn-success">Добавить</button>
+        </div>
             <div id="app">
                 <div class="justify-content-centermy-1 row">
 
@@ -115,30 +118,21 @@
                         <b-form-input v-model="filter" placeholder="Type to Search"></b-form-input>
                     </b-form-fieldset>
                 </div>
-                <b-table striped hover :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
+                <b-table striped hover :items="users" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
                     <template slot="ID" scope="item">
-                        {{users.id}}
+                        {{ users.id }}
                     </template>
-                    <template slot="Автор" scope="item">
-                        пусто
-                    </template>
-                    <template slot="Имя" scope="item">
-                       {{users.name}}
-                    </template>
-                    <template slot="Цена" scope="item">
-                        пусто
-                    </template>
-                    <template slot="Место публикации" scope="item">
-                        пусто
+                    <template slot="" scope="item">
+                       {{ users.name }}
                     </template>
                 </b-table>
                 <div class="justify-content-center row my-1">
-                    <b-pagination size="md" :total-rows="this.items.length" :per-page="perPage" v-model="currentPage" />
+                    <b-pagination size="md" :total-rows="this.users.length" :per-page="perPage" v-model="currentPage" />
                 </div>
             </div>
         </main>
     </div>
 </div>
-<script src = "js/vue.js"></script>
+<script src = "js/script.js"></script>
 </body>
 </html>
