@@ -1,5 +1,6 @@
 package com.sberteam.librarysustem.models;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,11 +18,12 @@ public class Books {
     //Отрасль
     @ManyToOne
     @JoinColumn(name = "category_id")
+
     private BooksCategories bookCategory;
 
     private String publisher;
 
-    @DateTimeFormat(pattern = "yyyy")
+    @DateTimeFormat(pattern = "YYYY")
     private Date year;
 
     private String publicationPlace;
@@ -46,6 +48,7 @@ public class Books {
 
     @ManyToOne
     @JoinColumn(name="party_id")
+    @JsonView(View.Internal.class)
     private Parties party;
 
     public Books() {
@@ -95,6 +98,7 @@ public class Books {
         this.author = author;
     }
 
+    @JsonView(View.Public.class)
     public BooksCategories getBookCategory() {
         return bookCategory;
     }
@@ -204,5 +208,26 @@ public class Books {
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", bookCategory=" + bookCategory.getId()     +
+                ", publisher='" + publisher + '\'' +
+                ", year=" + year +
+                ", publicationPlace='" + publicationPlace + '\'' +
+                ", tom_number=" + tom_number +
+                ", map=" + map.getId() +
+                ", level=" + level.getId() +
+                ", count=" + count +
+                ", price=" + price +
+                ", sum=" + sum +
+                ", transferNumber=" + transferNumber +
+                ", party=" + party +
+                '}';
     }
 }

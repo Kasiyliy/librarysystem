@@ -54,7 +54,8 @@
                         <input type="text" class="form-control p_input" name="publisher" placeholder="Издание" required>
 
                         <label class="text-muted">Год</label>
-                        <input type="number" min="1900" max="2099" step="1" class="form-control p_input" name="year" placeholder="Год" required>
+                        <input type="number" min="1900" max="2099" step="1" class="form-control p_input" name="year"
+                               placeholder="Год" required>
 
                         <label class="text-muted">Место издание</label>
                         <input type="text" class="form-control p_input" name="publisher_place"
@@ -64,7 +65,6 @@
                         <input type="text" class="form-control p_input" name="tom_number" placeholder="№ Тома" required>
 
                         <label class="text-muted">Карта</label>
-
                         <select class="form-control p_input" name="map_id" placeholder="Карта" th:each="map : ${maps}">
                             <option th:label="${map.name}"
                                     th:value="${map.id}">
@@ -72,7 +72,8 @@
                         </select>
 
                         <label class="text-muted">Ур</label>
-                        <select class="form-control p_input" name="level_id" placeholder="Ур" required th:each="level : ${levels}">
+                        <select class="form-control p_input" name="level_id" placeholder="Ур" required
+                                th:each="level : ${levels}">
                             <option th:value="${level.id}"
                                     th:label="${level.name}">
                             </option>
@@ -97,21 +98,23 @@
                 </form>
             </div>
 
-            <table class="table table-hover row">
+            <table class="table table-hover ">
                 <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>Название</th>
                     <th>Автор</th>
                     <th>№ передачи</th>
-                    <th>Обновить</th>
                     <th>Удалить</th>
+                    <th>Обновить </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="book : ${books}">
                     <td th:text="${book.id}"></td>
                     <td th:text="${book.name}"></td>
+                    <td><a th:text="${book.author}"></a></td>
+                    <td><a th:text="${book.transferNumber}"></a></td>
                     <td><a th:href="@{/books/delete/{id}(id=${book.id})}">Удалить</a></td>
                     <td><a th:href="@{/books/update/{id}(id=${book.id})}">Обновить</a></td>
                 </tr>
