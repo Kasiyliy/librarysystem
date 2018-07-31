@@ -1,0 +1,109 @@
+<div id="table" class="table table-hover"></div>
+
+<div id="jsGrid"></div>
+
+<script>
+    var maps = [];
+    var categories = [];
+    var levels =[];
+   $.get("/rest/books/getAllBooksLevels").done(function (data) {
+        levels = data;
+   });
+
+   $.get("/rest/books/getAllBooksCategories").done(function (data) {
+        categories = data;
+   });
+
+   $.get("/rest/books/getAllBooksMaps").done(function (data) {
+        maps = data;
+   });
+
+    var booksController =
+        {
+            insertItem: function(item) {
+                return $.ajax({
+                    contentType : "application/json",
+                    type: "POST",
+                    url: "/rest/books/insertBook",
+                    data: JSON.stringify(item)
+                });
+            },
+
+            updateItem: function(item) {
+                return $.ajax({
+                    contentType : "application/json",
+                    type: "PUT",
+                    url: "/rest/books/update/"+item.id,
+                    data:  JSON.stringify(item)
+                });
+            },
+
+            deleteItem: function(item) {
+                return $.ajax({
+                    type: "DELETE",
+                    url: "/rest/books/delete/"+item.id,
+                    data:  JSON.stringify(item)
+                });
+            }
+        }
+
+
+   $.get("/rest/books/getAllBooks").done(function (data) {
+
+
+       $("#jsGrid").jsGrid({
+           width: "100%",
+           height: "400px",
+
+           inserting: true,
+           editing: true,
+           sorting: true,
+           paging: true,
+
+           editButton: true,                               // show edit button
+           deleteButton: true,                             // show delete button
+           clearFilterButton: true,                        // show clear filter button
+           modeSwitchButton: true,
+           deleteConfirm:"Вы действительно хотите удалить запись?",
+
+           controller:booksController,
+           data: data,
+
+           fields: [
+               {title:"ID",type:"number", name:"id",validate: "required", width:30,align:"center", editing: false,inserting: false},
+
+               {title:"Наименование",type:"text", name: "name",validate: "required",width:150},
+
+               {title:"Автор",type:"text", name :"author",validate: "required" },
+
+               {title:"Категория",type:"select", name : "bookCategory.id",items:categories,valueType:"number", valueField:"id",textField:"name"},
+
+               {title:"Издание",type:"text",name: "publisher"},
+git
+               {title:"Год",type:"number",name:"year"},
+
+               {title:"Место изд",type:"text",name:"publicationPlace"},
+
+               {title:"№ Тома",type:"number",name:"tom_number"},
+
+               {title:"Карт.",type:"select",name: "map.id",items:maps,valueType:"number",valueField:"id",textField:"name"},//
+
+               {title:"Ур.",type:"select",name:"level.id",items:levels,valueType:"number",valueField:"id",textField:"name"},//
+
+               {title:"Кол-во",type:"number",name:"count",width:100},
+
+               {title:"Цена",type:"number", name:"price",width:100},
+
+               {title:"Итог",type:"number", name:"sum",editing:false,inserting: false},
+
+               {title:"№ Передачи",type:"number", name:"transferNumber"},
+
+               { type: "control"}
+           ]
+       });
+   });
+
+
+</script>
+
+</script>
