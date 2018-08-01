@@ -12,13 +12,6 @@
     <title>Dashboard Template for Bootstrap</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
-    <script src="https:/unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
-
     <div th:replace="fragments/headLinks"></div>
 </head>
 
@@ -33,106 +26,9 @@
         <div th:replace="fragments/sidebar"></div>
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-<!--
-            <div class="jumbotron">
-                <h3 class="mb-0 text-center">
-                    <p class="text-dark" href="#">Добавление книги</p>
-                </h3>
-                <form class="form horizontal-form" th:action="@{/books/add}" method="post">
-
-                    <div class="form-group">
-                        <input type="hidden" value="1" name="party_id">
-
-                        <label class="text-muted">Название книги</label>
-                        <input type="text" class="form-control p_input" name="name" placeholder="Название" required>
-
-                        <label class="text-muted">Автор</label>
-                        <input type="text" class="form-control p_input" name="author" placeholder="Автор" required>
-
-                        <label class="text-muted">Отрасль</label>
-                        <select class="form-control" name="category_id" placeholder="Отрасль" required
-                                th:each="category : ${categories}">
-                            <option th:text="${category.name}"
-                                    th:value="${category.id}">text
-                            </option>
-                        </select>
-
-                        <label class="text-muted">Издание</label>
-                        <input type="text" class="form-control p_input" name="publisher" placeholder="Издание" required>
-
-                        <label class="text-muted">Год</label>
-                        <input type="number" min="1900" max="2099" step="1" class="form-control p_input" name="year" placeholder="Год" required>
-
-                        <label class="text-muted">Место издание</label>
-                        <input type="text" class="form-control p_input" name="publisher_place"
-                               placeholder="Место издание" required>
-
-                        <label class="text-muted">№ Тома</label>
-                        <input type="text" class="form-control p_input" name="tom_number" placeholder="№ Тома" required>
-
-                        <label class="text-muted">Карта</label>
-
-                        <select class="form-control p_input" name="map_id" placeholder="Карта" th:each="map : ${maps}">
-                            <option th:label="${map.name}"
-                                    th:value="${map.id}">
-                            </option>
-                        </select>
-
-                        <label class="text-muted">Ур</label>
-                        <select class="form-control p_input" name="level_id" placeholder="Ур" required th:each="level : ${levels}">
-                            <option th:value="${level.id}"
-                                    th:label="${level.name}">
-                            </option>
-                        </select>
-
-                        <label class="text-muted">Кол-во</label>
-                        <input type="text" class="form-control p_input" name="count" placeholder="Кол-во" required>
-
-                        <label class="text-muted">Цена</label>
-                        <input type="text" class="form-control p_input" name="price" placeholder="Цена" required>
-
-                        <label class="text-muted">№ передачи</label>
-                        <input type="text" class="form-control p_input" name="transfer_number" placeholder="№ передачи"
-                               required>
-
-
-                    </div>
-
-                    <div class="text-center">
-                        <button type="submit" class="form-control btn-success">Добавить</button>
-                    </div>
-                </form>
-            </div>
---> <div class="text-center">
-            <button type="submit" class="form-control btn-success">Добавить</button>
-        </div>
-            <div id="app">
-                <div class="justify-content-centermy-1 row">
-
-                    <b-form-fieldset horizontal label="Rows per page" class="col-6" :label-size="6">
-                        <b-form-select :options="[{text:5,value:5},{text:10,value:10},{text:15,value:15}]" v-model="perPage">
-                        </b-form-select>
-                    </b-form-fieldset>
-
-                    <b-form-fieldset horizontal label="Filter" class="col-6" :label-size="2">
-                        <b-form-input v-model="filter" placeholder="Type to Search"></b-form-input>
-                    </b-form-fieldset>
-                </div>
-                <b-table striped hover :items="users" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
-                    <template slot="ID" scope="item">
-                        {{ users.id }}
-                    </template>
-                    <template slot="" scope="item">
-                       {{ users.name }}
-                    </template>
-                </b-table>
-                <div class="justify-content-center row my-1">
-                    <b-pagination size="md" :total-rows="this.users.length" :per-page="perPage" v-model="currentPage" />
-                </div>
-            </div>
+            <div th:replace="tables/booksTable"></div>
         </main>
     </div>
 </div>
-<script src = "js/script.js"></script>
 </body>
 </html>

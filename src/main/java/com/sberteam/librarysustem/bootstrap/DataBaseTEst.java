@@ -86,12 +86,10 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
                 "Куда то вдаль");
         partiesRepository.save(parties);
 
+        Books books = new Books("name","author",booksCategory,"publisher",new Date(),
+                "place",1222333l, booksMap,booksLevels,
+                4  , 25f, 23l, parties);
 
-
-        Books book= new Books();
-        book.setName("Abay");
-        book.setParty(parties);
-        booksRepository.save(book);
-
+        booksRepository.save(books);
     }
 }

@@ -1,5 +1,6 @@
 package com.sberteam.librarysustem.models;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,11 +18,12 @@ public class Books {
     //Отрасль
     @ManyToOne
     @JoinColumn(name = "category_id")
+
     private BooksCategories bookCategory;
 
     private String publisher;
 
-    @DateTimeFormat(pattern = "yyyy")
+    @DateTimeFormat(pattern = "YYYY")
     private Date year;
 
     private String publicationPlace;
@@ -54,7 +56,7 @@ public class Books {
 
     public Books(String name, String author, BooksCategories bookCategory, String publisher,
                  Date year, String publicationPlace, Long tom_number, BooksMaps map, BooksLevels level,
-                 Integer count, Float price, Float sum, Long transferNumber, Parties party) {
+                 Integer count, Float price, Long transferNumber, Parties party) {
         this.name = name;
         this.author = author;
         this.bookCategory = bookCategory;
@@ -66,7 +68,7 @@ public class Books {
         this.level = level;
         this.count = count;
         this.price = price;
-        this.sum = sum;
+        this.sum = count*price;
         this.transferNumber = transferNumber;
         this.party = party;
     }
@@ -172,7 +174,7 @@ public class Books {
     }
 
     public void setSum(Float sum) {
-        this.sum = sum;
+        this.sum = this.price*this.count;
     }
 
     public Long getTransferNumber() {
@@ -204,5 +206,26 @@ public class Books {
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", bookCategory=" + bookCategory.getId()     +
+                ", publisher='" + publisher + '\'' +
+                ", year=" + year +
+                ", publicationPlace='" + publicationPlace + '\'' +
+                ", tom_number=" + tom_number +
+                ", map=" + map.getId() +
+                ", level=" + level.getId() +
+                ", count=" + count +
+                ", price=" + price +
+                ", sum=" + sum +
+                ", transferNumber=" + transferNumber +
+                ", party=" + party +
+                '}';
     }
 }
