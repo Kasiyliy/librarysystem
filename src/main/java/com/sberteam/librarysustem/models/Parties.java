@@ -24,7 +24,6 @@ public class Parties
 
     private String note;
 
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateByDoc;
 
