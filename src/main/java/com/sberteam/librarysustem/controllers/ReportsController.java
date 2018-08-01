@@ -26,7 +26,7 @@ public class ReportsController {
 
     @GetMapping(path = {"/" , ""})
     public ModelAndView index() {
-        ModelAndView mw = new ModelAndView("admin/reports/index");
+        ModelAndView mw = new ModelAndView("/reports/index");
         mw.addObject("books", basicUsersRepository.findAll());
         return mw;
     }

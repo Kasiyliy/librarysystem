@@ -23,10 +23,10 @@
         <div th:replace="fragments/sidebar"></div>
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-            <h1>Отчеты</h1><br>
-            <form th:action="@{reports/exportExcel}" method="post">
-                <input type="submit" value = "Скачать"/>
-            </form>
+            <h1>Книга учета поступлений</h1><br>
+            С <input th:type="date"/><br>
+            По <input th:type="date"/><br>
+            
         </main>
     </div>
 </div>
