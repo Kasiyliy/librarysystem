@@ -12,17 +12,6 @@ import java.util.*;
 @Component
 public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> {
 
-    public DataBaseTEst(AuthenticableUsersRepository authenticableUsersRepository, BasicUsersRepository basicUsersRepository,
-                        RolesRepository rolesRepository, DocTypesRepository docTypesRepository,
-                        BooksRepository booksRepository, PartiesRepository partiesRepository, ProvidersRepository providersRepository) {
-        this.authenticableUsersRepository = authenticableUsersRepository;
-        this.basicUsersRepository = basicUsersRepository;
-        this.rolesRepository = rolesRepository;
-        this.docTypesRepository = docTypesRepository;
-        this.booksRepository = booksRepository;
-        this.partiesRepository = partiesRepository;
-        this.providersRepository = providersRepository;
-    }
 
     private AuthenticableUsersRepository authenticableUsersRepository;
     private BasicUsersRepository basicUsersRepository;
@@ -31,8 +20,28 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
     private BooksRepository booksRepository;
     private PartiesRepository partiesRepository;
     private ProvidersRepository providersRepository;
+    private BooksCategoriesRepository booksCategoriesRepository;
+    private BooksMapsRepository booksMapsRepository;
+    private BooksLevelsRepository booksLevelsRepository;
 
 
+    public DataBaseTEst(AuthenticableUsersRepository authenticableUsersRepository, BasicUsersRepository basicUsersRepository,
+                        RolesRepository rolesRepository, DocTypesRepository docTypesRepository,
+                        BooksRepository booksRepository, PartiesRepository partiesRepository, ProvidersRepository providersRepository,
+                        BooksCategoriesRepository booksCategoriesRepository,
+                        BooksLevelsRepository booksLevelsRepository,
+                        BooksMapsRepository booksMapsRepository) {
+        this.authenticableUsersRepository = authenticableUsersRepository;
+        this.basicUsersRepository = basicUsersRepository;
+        this.rolesRepository = rolesRepository;
+        this.docTypesRepository = docTypesRepository;
+        this.booksRepository = booksRepository;
+        this.partiesRepository = partiesRepository;
+        this.providersRepository = providersRepository;
+        this.booksCategoriesRepository = booksCategoriesRepository;
+        this.booksLevelsRepository = booksLevelsRepository;
+        this.booksMapsRepository = booksMapsRepository;
+    }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -64,16 +73,23 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         Providers provider = new Providers("Консульство Латвии");
         providersRepository.save(provider);
 
+        BooksCategories booksCategory = new BooksCategories("TestCat");
+        booksCategoriesRepository.save(booksCategory);
+
+        BooksMaps  booksMap = new BooksMaps("TestMap");
+        booksMapsRepository.save(booksMap);
+
+        BooksLevels booksLevels = new BooksLevels("TestLevel");
+        booksLevelsRepository.save(booksLevels);
+
         Parties parties = new Parties("Party number "+ new Date() ,new Date(), docTypes, "Note",new Date(),docTypes, provider,"Дома пушкина",
                 "Куда то вдаль");
         partiesRepository.save(parties);
 
+        Books books = new Books("name","author",booksCategory,"publisher",new Date(),
+                "place",1222333l, booksMap,booksLevels,
+                4  , 25f, 23l, parties);
 
-
-        Books book= new Books();
-        book.setName("Abay");
-        book.setParty(parties);
-        booksRepository.save(book);
-
+        booksRepository.save(books);
     }
 }
