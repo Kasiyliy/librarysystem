@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "rest/parties",produces = "application/json")
+@RequestMapping(value = "/rest/parties",produces = "application/json")
 public class PartiesRestController {
     PartiesRepository partiesRepository;
 
