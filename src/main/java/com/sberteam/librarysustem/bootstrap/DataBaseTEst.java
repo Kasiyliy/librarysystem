@@ -82,7 +82,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         BooksLevels booksLevels = new BooksLevels("TestLevel");
         booksLevelsRepository.save(booksLevels);
 
-        Parties parties = new Parties("Party number "+ new Date() ,new Date(), docTypes, "Note",new Date(),docTypes, provider,"Дома пушкина",
+        Parties parties = new Parties(13213L,new Date(), docTypes, "Note", 351351L, new Date(),docTypes, 10, 2000f, provider,"Дома пушкина",
                 "Куда то вдаль");
         partiesRepository.save(parties);
 

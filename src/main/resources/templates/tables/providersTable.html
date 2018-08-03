@@ -4,13 +4,9 @@
 <script>
     var controller =
         {
-            insertItem: function(item) {
-                return $.ajax({
-                    contentType : "application/json",
-                    type: "POST",
-                    url: "/rest/providers/insert",
-                    data: JSON.stringify(item)
-                });
+            loadData: function (filter) {
+                return $.get("/rest/docTypes/getAll").done(function (data) {
+                    return data;});
             },
 
             updateItem: function(item) {
