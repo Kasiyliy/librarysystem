@@ -22,7 +22,7 @@ public class DocTypesRestController {
     }
 
     @GetMapping("/getById/{id}")
-    public DocTypes getById(@RequestParam Long id){
+    public DocTypes getById(@PathVariable Long id){
         Optional<DocTypes> docTypes= docTypesRepository.findById(id);
         return docTypes.orElse(null);
     }

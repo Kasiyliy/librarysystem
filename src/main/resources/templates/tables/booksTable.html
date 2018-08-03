@@ -6,15 +6,38 @@
     var categories = [];
     var levels = [];
 
+
     var controller =
         {
             loadData: function (filter) {
-                return $.get("/rest/books/getAll").done(function (data) {
-                    return data;
+                var returnData = [];
+                $.get({url: "/rest/books/getAll", async: false}).done(function (data) {
+                    returnData = $.grep(data, function (item) {
+                        console.log(item);
+                        if (typeof currPartyId !== 'undefined')
+                            return (item.party != null && item.party.id === currPartyId);
+                        else
+                            return item;
+                        /*&& (!filter.name || item.Address.indexOf(filter.Address) > -1)
+                        && (!filter.name || item.Address.indexOf(filter.Address) > -1)
+                        && (!filter.name || item.Address.indexOf(filter.Address) > -1)
+                        && (!filter.author || item.Country === filter.Country)
+                        && (filter.publisher === undefined || item.Married === filter.Married);*/
+                    });
                 });
+
+                return returnData;
             },
 
             insertItem: function (item) {
+                if (typeof currPartyId !== 'undefined')
+                $.get(
+                    {
+                        url: "/rest/parties/getById/"+currPartyId, async: false
+                    })
+                    .done(function (data) {
+                        item.party = (data);
+                    });
                 return $.ajax({
                     contentType: "application/json",
                     type: "POST",
@@ -77,7 +100,7 @@
         sorting: true,
         paging: true,
         autoload: true,
-        filtering:true,
+        filtering: true,
 
         editButton: true,                               // show edit button
         deleteButton: true,                             // show delete button
@@ -121,7 +144,7 @@
 
             {title: "Издание", type: "text", name: "publisher"},
 
-            {title: "Год", type: "number", name: "year"},
+            {title: "Год", type: "dateField", name: "year"},
 
             {title: "Место изд", type: "text", name: "publicationPlace"},
 
@@ -153,7 +176,9 @@
 
             {title: "Итог", type: "number", name: "sum", editing: false, inserting: false},
 
-            {type:"number", name:"party.id",visible:false},
+            {
+                type: "number", name: "party.id", visible: false,
+            },
 
             {title: "№ Передачи", type: "number", name: "transferNumber"},
 

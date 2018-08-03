@@ -23,7 +23,7 @@ public class BooksRestController {
     }
 
     @GetMapping("/getById/{id}")
-    public Books getById(@RequestParam Long id){
+    public Books getById(@PathVariable  Long id){
         Optional<Books> books= booksRepository.findById(id);
         return books.orElse(null);
     }

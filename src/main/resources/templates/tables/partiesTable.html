@@ -1,7 +1,7 @@
 <div id="partiesTable" class="table table-hover"></div>
 
 <script>
-
+    var currPartyId = -1;
     var docTypes = [];
     var provider = [];
 
@@ -23,7 +23,7 @@
             provider = data;
         });
 
-    var booksController =
+    var partiesController =
         {
             loadData: function (filter) {
                 return $.get("/rest/parties/getAll").done(function (data) {
@@ -36,6 +36,8 @@
                     type: "POST",
                     url: "/rest/parties/insert",
                     data: JSON.stringify(item)
+                }).done(function (data) {
+                    $("#partiesTable").jsGrid("render");
                 });
             },
 
@@ -55,7 +57,7 @@
                     data:  JSON.stringify(item)
                 });
             }
-        }
+        };
 
        $("#partiesTable").jsGrid({
            width: "100%",
@@ -73,14 +75,19 @@
            modeSwitchButton: true,
            deleteConfirm:"Вы действительно хотите удалить запись?",
 
-           controller:booksController,
-
+           controller:partiesController,
+           rowClick: function(args) {
+               currPartyId = args.item.id;
+               $("#booksTable").jsGrid("render");
+               var $row = this.rowByItem(args.item);
+               $row.toggleClass("jsgrid-selected-row");
+           },
            fields: [
                {title:"ID",type:"number", name:"id",validate: "required", width:30,align:"center", editing: false,inserting: false},
 
-               {title:"№ Партии",type:"number", name: "name",validate: "required",width:150},
+               {title:"№ Партии",type:"number", name: "partyNum",validate: "required",width:150},
 
-               {title:"Дата поставки",type:"text", name :"deliveryDate",validate: "required" },
+               {title:"Дата поставки",type:"dateField", name :"deliveryDate",validate: "required" },
 
                {title:"Тип ист.",type:"select", name : "sourceDocType.id",items:docTypes,valueType:"number", valueField:"id",textField:"name"},
 
@@ -88,7 +95,7 @@
 
                {title:"№ Документа",type:"number",name:"docNum"},
 
-               {title:"Дата по док.",type:"text",name:"dateByDoc"},
+               {title:"Дата по док.",type:"dateField",name:"dateByDoc"},
 
                {title:"Тип документа",type:"select", name : "docTypes.id",items:docTypes,valueType:"number", valueField:"id",textField:"name"},
 
@@ -105,6 +112,7 @@
                {type: "control"}
            ]
        });
+
 
 
 </script>

@@ -38,6 +38,7 @@ public class Parties
 
     @ManyToOne
     @JoinColumn(name = "provider_id")
+
     private Providers provider; //new
 
     private String address;

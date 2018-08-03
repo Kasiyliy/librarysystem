@@ -21,7 +21,7 @@ public class PartiesRestController {
     }
 
     @GetMapping("/getById/{id}")
-    public Parties getById(@RequestParam Long id){
+    public Parties getById(@PathVariable Long id){
         Optional<Parties> party= partiesRepository.findById(id);
         return party.orElse(null);
     }

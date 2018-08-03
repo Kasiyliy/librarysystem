@@ -24,7 +24,7 @@ public class BooksCategoriesRestController {
     }
 
     @GetMapping("/getById/{id}")
-    public BooksCategories getById(@RequestParam Long id){
+    public BooksCategories getById(@PathVariable  Long id){
         Optional<BooksCategories> booksCategory= booksCategoriesRepository.findById(id);
         return booksCategory.orElse(null);
     }
