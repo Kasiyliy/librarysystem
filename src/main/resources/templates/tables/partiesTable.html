@@ -1,29 +1,43 @@
 <div id="partiesTable" class="table table-hover"></div>
 
 <script>
-    var maps = [];
-    var categories = [];
-    var levels =[];
-   $.get("/rest/books/getAllBooksLevels").done(function (data) {
-        levels = data;
-   });
+    var currPartyId = -1;
+    var docTypes = [];
+    var provider = [];
 
-   $.get("/rest/books/getAllBooksCategories").done(function (data) {
-        categories = data;
-   });
-
-   $.get("/rest/books/getAllBooksMaps").done(function (data) {
-        maps = data;
-   });
-
-    var booksController =
+    $.get(
         {
+            url: "/rest/docTypes/getAll",
+            async: false
+        })
+        .done(function (data) {
+            docTypes = data;
+        });
+
+    $.get(
+        {
+            url: "/rest/providers/getAll",
+            async: false
+        })
+        .done(function (data) {
+            provider = data;
+        });
+
+    var partiesController =
+        {
+            loadData: function (filter) {
+                return $.get("/rest/parties/getAll").done(function (data) {
+                    return data;});
+            },
+
             insertItem: function(item) {
                 return $.ajax({
                     contentType : "application/json",
                     type: "POST",
-                    url: "/rest/books/insert",
+                    url: "/rest/parties/insert",
                     data: JSON.stringify(item)
+                }).done(function (data) {
+                    $("#partiesTable").jsGrid("render");
                 });
             },
 
@@ -31,7 +45,7 @@
                 return $.ajax({
                     contentType : "application/json",
                     type: "PUT",
-                    url: "/rest/books/update/"+item.id,
+                    url: "/rest/parties/update/"+item.id,
                     data:  JSON.stringify(item)
                 });
             },
@@ -39,14 +53,12 @@
             deleteItem: function(item) {
                 return $.ajax({
                     type: "DELETE",
-                    url: "/rest/books/delete/"+item.id,
+                    url: "/rest/parties/delete/"+item.id,
                     data:  JSON.stringify(item)
                 });
             }
-        }
+        };
 
-
-   $.get("/rest/books/getAllBooks").done(function (data) {
        $("#partiesTable").jsGrid({
            width: "100%",
            height: "400px",
@@ -55,6 +67,7 @@
            editing: true,
            sorting: true,
            paging: true,
+           autoload:true,
 
            editButton: true,                               // show edit button
            deleteButton: true,                             // show delete button
@@ -62,42 +75,44 @@
            modeSwitchButton: true,
            deleteConfirm:"Вы действительно хотите удалить запись?",
 
-           controller:booksController,
-           data: data,
-
+           controller:partiesController,
+           rowClick: function(args) {
+               currPartyId = args.item.id;
+               $("#booksTable").jsGrid("render");
+               var $row = this.rowByItem(args.item);
+               $row.toggleClass("jsgrid-selected-row");
+           },
            fields: [
                {title:"ID",type:"number", name:"id",validate: "required", width:30,align:"center", editing: false,inserting: false},
 
-               {title:"Наименование",type:"text", name: "name",validate: "required",width:150},
+               {title:"№ Партии",type:"number", name: "partyNum",validate: "required",width:150},
 
-               {title:"Автор",type:"text", name :"author",validate: "required" },
+               {title:"Дата поставки",type:"dateField", name :"deliveryDate",validate: "required" },
 
-               {title:"Категория",type:"select", name : "bookCategory.id",items:categories,valueType:"number", valueField:"id",textField:"name"},
+               {title:"Тип ист.",type:"select", name : "sourceDocType.id",items:docTypes,valueType:"number", valueField:"id",textField:"name"},
 
-               {title:"Издание",type:"text",name: "publisher"},
+               {title:"Примечание",type:"textarea",name: "note"},
 
-               {title:"Год",type:"number",name:"year"},
+               {title:"№ Документа",type:"number",name:"docNum"},
 
-               {title:"Место изд",type:"text",name:"publicationPlace"},
+               {title:"Дата по док.",type:"dateField",name:"dateByDoc"},
 
-               {title:"№ Тома",type:"number",name:"tom_number"},
+               {title:"Тип документа",type:"select", name : "docTypes.id",items:docTypes,valueType:"number", valueField:"id",textField:"name"},
 
-               {title:"Карт.",type:"select",name: "map.id",items:maps,valueType:"number",valueField:"id",textField:"name"},//
+               {title:"Поставщик",type:"select", name : "provider.id",items:provider,valueType:"number", valueField:"id",textField:"name"},
 
-               {title:"Ур.",type:"select",name:"level.id",items:levels,valueType:"number",valueField:"id",textField:"name"},//
+               {title:"Адрес",type:"text",name:"address",width:100},
 
-               {title:"Кол-во",type:"number",name:"count",width:100},
+               {title:"Передача",type:"text", name:"transfer",width:100},
 
-               {title:"Цена",type:"number", name:"price",width:100},
+               {title:"Кол-во",type:"number", name:"count",width:100},
 
-               {title:"Итог",type:"number", name:"sum",editing:false,inserting: false},
+               {title:"Сумма",type:"number", name:"sum",width:100},
 
-               {title:"№ Передачи",type:"number", name:"transferNumber"},
-
-               { type: "control"}
+               {type: "control"}
            ]
        });
-   });
+
 
 
 </script>

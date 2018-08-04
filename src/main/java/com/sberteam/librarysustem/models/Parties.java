@@ -4,7 +4,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 public class Parties
@@ -13,7 +12,7 @@ public class Parties
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private Long partyNum;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date deliveryDate;
@@ -24,6 +23,8 @@ public class Parties
 
     private String note;
 
+    private Long docNum;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateByDoc;
 
@@ -31,21 +32,29 @@ public class Parties
     @JoinColumn(name = "doctypes_id")
     private DocTypes docTypes; //New
 
+    private Integer count;
+
+    private Float sum;
+
     @ManyToOne
     @JoinColumn(name = "provider_id")
+
     private Providers provider; //new
 
     private String address;
 
     private String transfer;
 
-    public Parties(String name, Date deliveryDate, DocTypes sourceDocType, String note, Date dateByDoc, DocTypes docTypes, Providers provider, String address, String transfer) {
-        this.name = name;
+    public Parties(Long partyNum, Date deliveryDate, DocTypes sourceDocType, String note, Long docNum, Date dateByDoc, DocTypes docTypes, Integer count, Float sum, Providers provider, String address, String transfer) {
+        this.partyNum = partyNum;
         this.deliveryDate = deliveryDate;
         this.sourceDocType = sourceDocType;
         this.note = note;
+        this.docNum = docNum;
         this.dateByDoc = dateByDoc;
         this.docTypes = docTypes;
+        this.count = count;
+        this.sum = sum;
         this.provider = provider;
         this.address = address;
         this.transfer = transfer;
@@ -62,12 +71,12 @@ public class Parties
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getPartyNum() {
+        return partyNum;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPartyNum(Long partyNum) {
+        this.partyNum = partyNum;
     }
 
     public Date getDeliveryDate() {
@@ -147,5 +156,29 @@ public class Parties
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    public Long getDocNum() {
+        return docNum;
+    }
+
+    public void setDocNum(Long docNum) {
+        this.docNum = docNum;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Float getSum() {
+        return sum;
+    }
+
+    public void setSum(Float sum) {
+        this.sum = sum;
     }
 }

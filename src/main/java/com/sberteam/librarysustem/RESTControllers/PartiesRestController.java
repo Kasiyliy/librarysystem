@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "rest/parties",produces = "application/json")
+@RequestMapping(value = "/rest/parties",produces = "application/json")
 public class PartiesRestController {
     PartiesRepository partiesRepository;
 
@@ -21,7 +21,7 @@ public class PartiesRestController {
     }
 
     @GetMapping("/getById/{id}")
-    public Parties getById(@RequestParam Long id){
+    public Parties getById(@PathVariable Long id){
         Optional<Parties> party= partiesRepository.findById(id);
         return party.orElse(null);
     }
