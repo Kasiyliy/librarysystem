@@ -94,7 +94,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         DocTypes docTypes2 = new DocTypes("Подписка");
         docTypesRepository.save(docTypes2);
 
-        DocTypes docTypes3 = new DocTypes("Покупка");
+        DocTypes docTypes3 = new DocTypes("Покупкa");
         docTypesRepository.save(docTypes3);
 
         Providers provider2 = new Providers("Издание СНГ");
