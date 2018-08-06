@@ -63,7 +63,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         user.setName("USER AUTH");
         user.setSurname("USER AUTHs");
         user.setRoles(new HashSet<Roles>());
-        user.getRoles().add(role_guest);
+        user.getRoles().add(role_admin);
         BasicUsers basicUser = new BasicUsers();
         basicUser.setPatronomyc("kasyaUsera");
         basicUser.setName("kasya");

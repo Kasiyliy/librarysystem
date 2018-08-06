@@ -21,6 +21,10 @@ h1 {
  * Sidebar
  */
 
+tr.highlight td.jsgrid-cell {
+    background-color: rgba(86, 190, 242, 0.64);
+}
+
 .sidebar {
     position: fixed;
     top: 51px;

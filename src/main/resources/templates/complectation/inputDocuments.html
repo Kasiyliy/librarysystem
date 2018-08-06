@@ -14,8 +14,6 @@
 </head>
 
 <body>
-
-
 <div class="container-fluid">
     <div th:replace="fragments/nav"></div>
 
@@ -27,6 +25,11 @@
             <div><h3>Партии</h3></div>
             <div th:replace="tables/partiesTable"></div>
             <div><h3>Состав партии</h3></div>
+
+            <div id = "error-control">
+                <p id = "error-text" style="color: rgba(255,70,86,0.82)"></p>
+            </div>
+
             <div th:replace="tables/booksTable"></div>
         </main>
     </div>
