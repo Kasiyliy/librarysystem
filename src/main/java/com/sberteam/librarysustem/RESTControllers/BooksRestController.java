@@ -23,20 +23,19 @@ public class BooksRestController {
     }
 
     @GetMapping("/getById/{id}")
-    public Books getById(@RequestParam Long id){
+    public Books getById(@PathVariable  Long id){
         Optional<Books> books= booksRepository.findById(id);
         return books.orElse(null);
     }
 
-
     @PostMapping(path={"/insert"})
     public void insert(@RequestBody Books book){
+        book.setSum(book.getCount()*book.getPrice());
         booksRepository.save(book);
     }
 
     @PutMapping(path={"/update/{id}"})
     public Books update(@PathVariable("id") Long id,@RequestBody Books book){
-        System.out.println(book.getName());
         if(booksRepository.findById(id).isPresent())
             book = booksRepository.save(book);
 

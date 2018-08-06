@@ -21,7 +21,7 @@ public class ProvidersRestController {
     }
 
     @GetMapping("/getById/{id}")
-    public Providers getById(@RequestParam Long id){
+    public Providers getById(@PathVariable  Long id){
         Optional<Providers> provider= providersRepository.findById(id);
         return provider.orElse(null);
     }

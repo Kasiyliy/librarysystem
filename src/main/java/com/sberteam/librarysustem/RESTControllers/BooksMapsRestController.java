@@ -21,7 +21,7 @@ public class BooksMapsRestController {
     }
 
     @GetMapping("/getById/{id}")
-    public BooksMaps getById(@RequestParam Long id){
+    public BooksMaps getById(@PathVariable  Long id){
         Optional<BooksMaps> booksCategory= booksMapsRepository.findById(id);
         return booksCategory.orElse(null);
     }
