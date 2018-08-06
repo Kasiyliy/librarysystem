@@ -1,7 +1,7 @@
 package com.sberteam.librarysustem.RESTControllers;
 
 import com.sberteam.librarysustem.models.Newspapers;
-import com.sberteam.librarysustem.repositories.NewspapersRepositories;
+import com.sberteam.librarysustem.repositories.NewspapersRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -10,9 +10,9 @@ import java.util.Optional;
 @RequestMapping(value = "/rest/newspapers",produces = "application/json")
 public class NewspapersRestController {
 
-    private NewspapersRepositories newspapersRepository;
+    private NewspapersRepository newspapersRepository;
 
-    public NewspapersRestController (NewspapersRepositories newspapersRepository) {
+    public NewspapersRestController (NewspapersRepository newspapersRepository) {
         this.newspapersRepository = newspapersRepository;
     }
 

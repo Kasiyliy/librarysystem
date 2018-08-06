@@ -11,7 +11,7 @@ public class Newspapers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long index;
+    private Long indx;
 
     private Long iisn;
 
@@ -26,7 +26,6 @@ public class Newspapers {
     private Float price;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
     private BooksCategories categories;
 
     private String place;
@@ -38,8 +37,8 @@ public class Newspapers {
     @ManyToOne
     private BasicUsers employee;
 
-    public Newspapers(Long index, Long iisn, String name, String informationAbout, String lang, Long count, Float price, BooksCategories categories, String place, String publisher, Date year, BasicUsers employee) {
-        this.index = index;
+    public Newspapers(Long indx, Long iisn, String name, String informationAbout, String lang, Long count, Float price, BooksCategories categories, String place, String publisher, Date year, BasicUsers employee) {
+        this.indx = indx;
         this.iisn = iisn;
         this.name = name;
         this.informationAbout = informationAbout;
@@ -66,11 +65,11 @@ public class Newspapers {
     }
 
     public Long getIndex() {
-        return index;
+        return indx;
     }
 
-    public void setIndex(Long index) {
-        this.index = index;
+    public void setIndex(Long indx) {
+        this.indx = indx;
     }
 
     public Long getIisn() {

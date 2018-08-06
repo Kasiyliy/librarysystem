@@ -27,7 +27,7 @@ public class BasicUserRestController {
         this.basicUsersRepository = basicUsersRepository;
     }
 
-    @GetMapping(path = "/getAllUsers")
+    @GetMapping(path = "/getAll")
     public Set<BasicUsers> getAllUsers(){
         Set<BasicUsers> users = new HashSet<>();
         basicUsersRepository.findAll().forEach(users :: add);
