@@ -86,11 +86,11 @@
 
             {title:"IISN",type:"number", name :"iisn"},
 
-            {title:"Наименование",type:"string", name : "name",validate:"required"},
+            {title:"Наименование",type:"text", name : "name",validate:"required", width:150},
 
-            {title:"Свед. отн. загл.",type:"string",name: "informationAbout"},
+            {title:"Свед. отн. загл.",type:"text",name: "informationAbout", width:150},
 
-            {title:"Язык",type:"string",name:"lang"},
+            {title:"Язык",type:"text",name:"lang"},
 
             {title:"Кол-во в год",type:"number",name:"count"},
 
@@ -104,7 +104,7 @@
 
             {title:"Год изд",type:"dateField", name:"year"},
 
-            {title:"Сотрудник",type:"select", name : "employee.id",items:categories,valueType:"number", valueField:"id",textField:"surname"},
+            {title:"Сотрудник",type:"text", name : "employee",validate:"required"},
 
             {type: "control"}
         ]
