@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,27 +12,21 @@
     <title>Dashboard Template for Bootstrap</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
-    <div th:replace="fragments/headLinks"></div>
+    <div th:replace = "fragments/headLinks"></div>
 </head>
 
 <body>
+
+
 <div class="container-fluid">
-    <div th:replace="fragments/nav"></div>
+    <div th:replace = "fragments/nav"></div>
 
     <div class="row">
 
-        <div th:replace="fragments/sidebar"></div>
+        <div th:replace = "fragments/sidebar"></div>
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-            <div><h3>Партии</h3></div>
-            <div th:replace="tables/partiesTable"></div>
-            <div><h3>Состав партии</h3></div>
-
-            <div id = "error-control">
-                <p id = "error-text" style="color: rgba(255,70,86,0.82)"></p>
-            </div>
-
-            <div th:replace="tables/booksTable"></div>
+            <div th:replace="tables/newspapersTable"></div>
         </main>
     </div>
 </div>

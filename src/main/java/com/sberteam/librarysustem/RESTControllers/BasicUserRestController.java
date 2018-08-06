@@ -1,11 +1,18 @@
 package com.sberteam.librarysustem.RESTControllers;
 
 import com.sberteam.librarysustem.models.BasicUsers;
+import com.sberteam.librarysustem.models.Roles;
 import com.sberteam.librarysustem.models.BooksCategories;
 import com.sberteam.librarysustem.repositories.BasicUsersRepository;
+import com.sberteam.librarysustem.repositories.RolesRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
@@ -15,6 +22,8 @@ import java.util.Set;
 public class BasicUserRestController {
 
     BasicUsersRepository basicUsersRepository;
+
+    RolesRepository rolesRepository;
 
     public BasicUserRestController(BasicUsersRepository basicUsersRepository){
         this.basicUsersRepository = basicUsersRepository;
@@ -35,6 +44,27 @@ public class BasicUserRestController {
         }
         else return null;
     }
+
+    @GetMapping(path = "/getUsersByRoleId")
+    public Set<BasicUsers> getUsersByRoleId(@RequestParam Long id){
+        Optional<Roles> rolesOptional = rolesRepository.findById(id);
+                if(!rolesOptional.isPresent())
+                    return null;
+                Roles role = rolesOptional.get();
+        Set<BasicUsers> returnUsers = new HashSet<>();
+        Iterable<BasicUsers> users = basicUsersRepository.findAll();
+        Iterator<BasicUsers> iterator = users.iterator();
+
+        BasicUsers user;
+        while (iterator.hasNext()){
+            user = iterator.next();
+            if(user.getRoles().contains(role))
+                returnUsers.add(user);
+        }
+
+       return returnUsers;
+    }
+
 
     @PostMapping(path={"/insert"})
     public void insert(@RequestBody BasicUsers basicUsers){

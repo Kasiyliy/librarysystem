@@ -6,6 +6,24 @@
     var categories = [];
     var levels = [];
 
+    function checkPartySum(data) {
+        var totalSum =0;
+        var totalCount = 0;
+
+        data.forEach(function (value) {
+            totalCount += value.count;
+            totalSum   += value.sum;
+        });
+
+        var errorText = "";
+
+        if(typeof currPartySum !== 'undefined' && currPartySum < totalSum)
+            errorText = "Сумма партии не совпадают, текующая сумма состава партии: " + totalSum;
+        if(typeof currPartyCount !== 'undefined' && currPartyCount < totalCount)
+            errorText += "\n Кол-во партии не совпадают, текующая кол-во состава партии: " + totalCount;
+
+        $("#error-text").text(errorText);
+    }
 
     var controller =
         {
@@ -24,8 +42,9 @@
                         && (!filter.author || item.Country === filter.Country)
                         && (filter.publisher === undefined || item.Married === filter.Married);*/
                     });
-                });
+                    checkPartySum(returnData);
 
+                });
                 return returnData;
             },
 

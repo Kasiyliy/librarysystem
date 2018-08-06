@@ -19,7 +19,6 @@ public class Gender {
     }
 
     public Gender() {
-        this.name = name;
     }
 
 
