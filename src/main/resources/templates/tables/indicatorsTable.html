@@ -1,0 +1,102 @@
+<div id="booksTable" class="table table-hover"></div>
+
+
+<script>
+    var maps = [];
+    var categories = [];
+    var levels =[];
+    $.get("/rest/books/levels/getAll").done(function (data) {
+        levels = data;
+    });
+
+    $.get("/rest/books/categories/getAll").done(function (data) {
+        categories = data;
+    });
+
+    $.get("/rest/books/maps/getAll").done(function (data) {
+        maps = data;
+    });
+
+    var controller =
+        {
+            insertItem: function(item) {
+                return $.ajax({
+                    contentType : "application/json",
+                    type: "POST",
+                    url: "/rest/books/insert",
+                    data: JSON.stringify(item)
+                });
+            },
+
+            updateItem: function(item) {
+                return $.ajax({
+                    contentType : "application/json",
+                    type: "PUT",
+                    url: "/rest/books/update/"+item.id,
+                    data:  JSON.stringify(item)
+                });
+            },
+
+            deleteItem: function(item) {
+                return $.ajax({
+                    type: "DELETE",
+                    url: "/rest/books/delete/"+item.id,
+                    data:  JSON.stringify(item)
+                });
+            }
+        }
+
+
+    $.get("/rest/books/getAll").done(function (data) {
+        $("#booksTable").jsGrid({
+            width: "100%",
+            height: "400px",
+
+            sorting: true,
+            paging: true,
+
+            clearFilterButton: true,                        // show clear filter button
+            modeSwitchButton: true,
+
+            noDataContent: "Записей не найдено",
+
+            loadIndication: true,
+            loadIndicationDelay: 500,
+
+
+            data: data,
+
+            fields: [
+                {title:"ID",type:"number", name:"id",validate: "required", width:30,align:"center", editing: false,inserting: false},
+
+                {title:"Наименование",type:"text", name: "name",validate: "required",width:150},
+
+                {title:"Автор",type:"text", name :"author",validate: "required" },
+
+                {title:"Категория",type:"select", name : "bookCategory.id",items:categories,valueType:"number", valueField:"id",textField:"name"},
+
+                {title:"Издание",type:"text",name: "publisher"},
+
+                {title:"Год",type:"number",name:"year"},
+
+                {title:"Место изд",type:"text",name:"publicationPlace"},
+
+                {title:"№ Тома",type:"number",name:"tom_number"},
+
+                {title:"Карт.",type:"select",name: "map.id",items:maps,valueType:"number",valueField:"id",textField:"name"},//
+
+                {title:"Ур.",type:"select",name:"level.id",items:levels,valueType:"number",valueField:"id",textField:"name"},//
+
+                {title:"Кол-во",type:"number",name:"count",width:100},
+
+                {title:"Цена",type:"number", name:"price",width:100},
+
+                {title:"Итог",type:"number", name:"sum",editing:false,inserting: false},
+
+                {title:"№ Передачи",type:"number", name:"transferNumber"}
+            ]
+        });
+    });
+
+
+</script>
