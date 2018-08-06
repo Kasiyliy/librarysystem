@@ -1,0 +1,130 @@
+<div id="ordersTable" class="table table-hover"></div>
+
+
+<script>
+    var books = [];
+    var categories = [];
+    var levels = [];
+    var users = [];
+
+    var controller =
+        {
+            loadData: function (filter) {
+                return  $.grep(data, function (item) {
+                       return //(!filter.date || item.date.indexOf(filter.date) > -1)
+                         (!filter.chb || item.chb.indexOf(filter.chb) > -1)
+                        && (!filter.reader || item.reader.indexOf(filter.reader) > -1)
+                        && (!filter.author || item.author.indexOf(filter.author) > -1)
+                           && (!filter.contentsOfSource || item.contentsOfSource.indexOf(filter.contentsOfSource) > -1)
+                           && (!filter.inf || item.inf.indexOf(filter.inf) > -1)
+                           && (!filter.barcode || item.barcode.indexOf(filter.barcode) > -1);
+                    });
+            },
+        };
+
+
+    $.get(
+        {
+            url: "/rest/books/levels/getAll",
+            async: false
+        })
+        .done(function (data) {
+            levels = data;
+        });
+
+    $.get(
+        {
+            url: "/rest/books/categories/getAll", async: false
+        })
+        .done(function (data) {
+            categories = data;
+        });
+
+    $.get(
+        {
+            url: "/rest/books/getAll", async: false
+        })
+        .done(function (data) {
+            books = data;
+        });
+    $.get(
+        {
+            url: "/rest/users/getAll", async: false
+        })
+        .done(function (data) {
+            users = data;
+        });
+
+    $("#ordersTable").jsGrid({
+        width: "100%",
+        height: "400px",
+
+        sorting: true,
+        paging: true,
+        filtering: true,
+
+
+        clearFilterButton: true,                        // show clear filter button
+        modeSwitchButton: true,
+
+        noDataContent: "Записей не найдено",
+
+
+
+        controller: controller,
+
+        fields: [
+            {
+                title: "№ заказа",
+                name: "id",
+                validate: "required",
+                width: 40,
+                align: "center",
+                editing: false,
+                inserting: false
+            },
+
+            {title: "Дата заказа", type: "dateField", name: "date", validate: "required", width: 150},
+
+            {title: "№ ЧБ", type: "text", name: "chb", validate: "required"},
+
+            {
+                title: "ФИО Читателя",
+                type: "text",
+                name: "user.id",
+                items: users,
+                valueType: "text",
+                valueField: "id",
+                textField: "name"
+            },
+
+            {
+                title: "Автор",
+                type: "text",
+                name: "book.id",
+                items: books,
+                valueType: "text",
+                valueField: "id",
+                textField: "author"
+            },
+
+            {
+                title: "Заглавие",
+                type: "text",
+                name: "book.id",
+                items: books,
+                valueType: "text",
+                valueField: "id",
+                textField: "name"
+            },
+
+            {title: "Загл. источника", type: "text", name: "contentsOfSource"},
+
+            {title: "Инв. №", type: "text", name: "inf"},
+
+            {title: "Штрих-код", type: "number", name: "barcode"},
+        ]
+    });
+
+
+</script>

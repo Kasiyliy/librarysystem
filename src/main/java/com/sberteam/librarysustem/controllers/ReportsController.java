@@ -30,6 +30,7 @@ public class ReportsController {
         mw.addObject("books", basicUsersRepository.findAll());
         return mw;
     }
+
     @PostMapping(path = "/exportExcel")
     public void export(HttpServletResponse response){
         List<BasicUsers> users = (List<BasicUsers>) basicUsersRepository.findAll();
