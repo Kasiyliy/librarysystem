@@ -5,7 +5,7 @@
     var controller =
         {
             loadData: function (filter) {
-                return $.get("/rest/docTypes/getAll").done(function (data) {
+                return $.get("/rest/providers/getAll").done(function (data) {
                     return data;});
             },
 
@@ -31,7 +31,7 @@
     $.get("/rest/providers/getAll").done(function (data) {
         $("#providersTable").jsGrid({
             width: "100%",
-            height: "400px",
+            height: "600px",
 
             inserting: true,
             editing: true,

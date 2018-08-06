@@ -1,11 +1,9 @@
 package com.sberteam.librarysustem.RESTControllers;
 
 import com.sberteam.librarysustem.models.BasicUsers;
+import com.sberteam.librarysustem.models.BooksCategories;
 import com.sberteam.librarysustem.repositories.BasicUsersRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -36,6 +34,25 @@ public class BasicUserRestController {
             return user.get();
         }
         else return null;
+    }
+
+    @PostMapping(path={"/insert"})
+    public void insert(@RequestBody BasicUsers basicUsers){
+        basicUsersRepository.save(basicUsers);
+    }
+
+    @PutMapping(path={"/update/{id}"})
+    public BasicUsers update(@PathVariable("id") Long id,@RequestBody BasicUsers basicUsers){
+        if(basicUsersRepository.findById(id).isPresent())
+            basicUsers = basicUsersRepository.save(basicUsers);
+
+        return basicUsers;
+    }
+
+    @DeleteMapping(path={"/delete/{id}"})
+    public void delete(@PathVariable("id") Long id){
+        if(basicUsersRepository.findById(id).isPresent())
+            basicUsersRepository.deleteById(id);
     }
 
 }

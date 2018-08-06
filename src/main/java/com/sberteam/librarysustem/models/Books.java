@@ -23,7 +23,6 @@ public class Books {
 
     private String publisher;
 
-    @DateTimeFormat(pattern = "YYYY")
     private Date year;
 
     private String publicationPlace;
