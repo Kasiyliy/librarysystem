@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 @Configuration
 public class LibrarysystemApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(LibrarysystemApplication.class, args);
 	}

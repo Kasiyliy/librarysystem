@@ -1,0 +1,72 @@
+<div id="booksCategoriesTable" class="table table-hover"></div>
+
+
+<script>
+    var controller =
+        {
+            loadData: function (filter) {
+                return $.get("/rest/basicusers/getAll").done(function (data) {
+                    return data;});
+            },
+
+            insertItem: function(item) {
+                return $.ajax({
+                    contentType : "application/json",
+                    type: "POST",
+                    url: "rest/basicusers/insert",
+                    data: JSON.stringify(item)
+                });
+            },
+
+            updateItem: function(item) {
+                return $.ajax({
+                    contentType : "application/json",
+                    type: "PUT",
+                    url: "/rest/basicusers/update/"+item.id,
+                    data:  JSON.stringify(item)
+                });
+            },
+
+            deleteItem: function(item) {
+                return $.ajax({
+                    type: "DELETE",
+                    url: "rest/basicusers/delete/"+item.id,
+                    data:  JSON.stringify(item)
+                });
+            }
+        };
+
+     $("#booksCategoriesTable").jsGrid({
+            width: "100%",
+            height: "400px",
+
+            inserting: true,
+            editing: true,
+            sorting: true,
+            paging: true,
+
+            autoload:true,
+
+            editButton: true,                               // show edit button
+            deleteButton: true,                             // show delete button
+                                                            // show clear filter button
+            modeSwitchButton: true,
+
+            deleteConfirm:"Вы действительно хотите удалить запись?",
+            noDataContent: "Записей не найдено",
+
+            loadIndication: true,
+            loadIndicationDelay: 500,
+
+            controller:controller,
+
+            fields: [
+                {title:"ID",type:"number", name:"id",validate: "required", width:30,align:"center", editing: false,inserting: false},
+
+                {title:"Название",type:"text", name: "name",validate: "required"},
+
+                { type: "control"}
+            ]
+        });
+
+</script>

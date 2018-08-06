@@ -13,12 +13,12 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping(value = "/rest/users",produces = "application/json")
-public class UserRestController {
+@RequestMapping(value = "/rest/basicusers",produces = "application/json")
+public class BasicUserRestController {
 
     BasicUsersRepository basicUsersRepository;
 
-    public UserRestController(BasicUsersRepository basicUsersRepository){
+    public BasicUserRestController(BasicUsersRepository basicUsersRepository){
         this.basicUsersRepository = basicUsersRepository;
     }
 

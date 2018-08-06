@@ -46,9 +46,14 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
-        Roles roles = new Roles();
-        roles.setName("ROLE_GUEST");
-        rolesRepository.save(roles);
+        Roles role_guest = new Roles();
+        role_guest.setName("ROLE_GUEST");
+
+        Roles role_admin = new Roles();
+        role_admin.setName("ROLE_ADMIN");
+
+        rolesRepository.save(role_guest);
+        rolesRepository.save(role_admin);
 
         AuthenticableUsers user = new AuthenticableUsers();
         user.setPatronomyc("batyaUsera");
@@ -58,7 +63,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         user.setName("USER AUTH");
         user.setSurname("USER AUTHs");
         user.setRoles(new HashSet<Roles>());
-        user.getRoles().add(roles);
+        user.getRoles().add(role_guest);
         BasicUsers basicUser = new BasicUsers();
         basicUser.setPatronomyc("kasyaUsera");
         basicUser.setName("kasya");
@@ -109,9 +114,9 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         BooksLevels booksLevels2 = new BooksLevels("TestLevel 2");
         booksLevelsRepository.save(booksLevels2);
 
-        Parties parties2 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider2,"Дома пушкина",
-                "Куда то вдаль");
-        partiesRepository.save(parties2);
+//        Parties parties2 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider2,"Дома пушкина",
+//                "Куда то вдаль");
+//        partiesRepository.save(parties2);
 
 
 
@@ -129,9 +134,9 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         BooksLevels booksLevels3 = new BooksLevels("TestLevel 3");
         booksLevelsRepository.save(booksLevels3);
 
-        Parties parties3 = new Parties("Party number "+ new Date() ,new Date(), docTypes, "Note",new Date(),docTypes2, provider3,"мк-н Мамыр-2",
-                "Шаляпина 202а");
-        partiesRepository.save(parties3);
+//        Parties parties3 = new Parties("Party number "+ new Date() ,new Date(), docTypes, "Note",new Date(),docTypes2, provider3,"мк-н Мамыр-2",
+//                "Шаляпина 202а");
+//        partiesRepository.save(parties3);
 
 
 
@@ -147,9 +152,9 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         BooksLevels booksLevels4 = new BooksLevels("TestLevel 4");
         booksLevelsRepository.save(booksLevels4);
 
-        Parties parties4 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider4,"мк-н Мамыр-2",
-                "мк-н Жетысу-4");
-        partiesRepository.save(parties4);
+//        Parties parties4 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider4,"мк-н Мамыр-2",
+//                "мк-н Жетысу-4");
+//        partiesRepository.save(parties4);
 
 
         Providers provider5 = new Providers("American Books");
@@ -164,9 +169,9 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         BooksLevels booksLevels5 = new BooksLevels("TestLevel 4");
         booksLevelsRepository.save(booksLevels4);
 
-        Parties parties5 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider5,"мк-н Мамыр-2",
-                "Сатпаева 909");
-        partiesRepository.save(parties5);
+//        Parties parties5 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider5,"мк-н Мамыр-2",
+//                "Сатпаева 909");
+//        partiesRepository.save(parties5);
 
 
 
@@ -179,9 +184,9 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         BooksLevels booksLevels6 = new BooksLevels("TestLevel 4");
         booksLevelsRepository.save(booksLevels6);
 
-        Parties parties6 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider6,"мк-н Мамыр-2",
-                "Жандосова 2");
-        partiesRepository.save(parties6);
+//        Parties parties6 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider6,"мк-н Мамыр-2",
+//                "Жандосова 2");
+//        partiesRepository.save(parties6);
 
 
         Providers provider7 = new Providers("ТОО Крос-Пресс");
@@ -193,9 +198,9 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         BooksLevels booksLevels7 = new BooksLevels("TestLevel 4");
         booksLevelsRepository.save(booksLevels7);
 
-        Parties parties7 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider4,"мк-н Мамыр-2",
-                "Жандосова 2");
-        partiesRepository.save(parties7);
+//        Parties parties7 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider4,"мк-н Мамыр-2",
+//                "Жандосова 2");
+//        partiesRepository.save(parties7);
 
 
 
@@ -208,9 +213,9 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         BooksLevels booksLevels8 = new BooksLevels("TestLevel 4");
         booksLevelsRepository.save(booksLevels8);
 
-        Parties parties8 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider4,"мк-н Мамыр-2",
-                "Жандосова 2");
-        partiesRepository.save(parties8);
+//        Parties parties8 = new Parties("Party number "+ new Date() ,new Date(), docTypes2, "Note",new Date(),docTypes2, provider4,"мк-н Мамыр-2",
+//                "Жандосова 2");
+//        partiesRepository.save(parties8);
 
         booksRepository.save(books);
     }
