@@ -45,25 +45,6 @@ public class BasicUserRestController {
         else return null;
     }
 
-    @GetMapping(path = "/getUsersByRoleId")
-    public Set<BasicUsers> getUsersByRoleId(@RequestParam Long id){
-        Optional<Roles> rolesOptional = rolesRepository.findById(id);
-                if(!rolesOptional.isPresent())
-                    return null;
-                Roles role = rolesOptional.get();
-        Set<BasicUsers> returnUsers = new HashSet<>();
-        Iterable<BasicUsers> users = basicUsersRepository.findAll();
-        Iterator<BasicUsers> iterator = users.iterator();
-
-        BasicUsers user;
-        while (iterator.hasNext()){
-            user = iterator.next();
-            if(user.getRoles().contains(role))
-                returnUsers.add(user);
-        }
-
-       return returnUsers;
-    }
 
 
     @PostMapping(path={"/insert"})

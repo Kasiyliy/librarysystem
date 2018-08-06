@@ -34,10 +34,9 @@ public class Newspapers {
 
     private Date year;
 
-    @ManyToOne
-    private BasicUsers employee;
+    private String employee;
 
-    public Newspapers(Long indx, Long iisn, String name, String informationAbout, String lang, Long count, Float price, BooksCategories categories, String place, String publisher, Date year, BasicUsers employee) {
+    public Newspapers(Long indx, Long iisn, String name, String informationAbout, String lang, Long count, Float price, BooksCategories categories, String place, String publisher, Date year, String employee) {
         this.indx = indx;
         this.iisn = iisn;
         this.name = name;
@@ -64,11 +63,11 @@ public class Newspapers {
         this.id = id;
     }
 
-    public Long getIndex() {
+    public Long getIndx() {
         return indx;
     }
 
-    public void setIndex(Long indx) {
+    public void setIndx(Long indx) {
         this.indx = indx;
     }
 
@@ -152,11 +151,11 @@ public class Newspapers {
         this.year = year;
     }
 
-    public BasicUsers getEmployee() {
+    public String getEmployee() {
         return employee;
     }
 
-    public void setEmployee(BasicUsers employee) {
+    public void setEmployee(String employee) {
         this.employee = employee;
     }
 
