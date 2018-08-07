@@ -1,0 +1,104 @@
+<div id="basicUsersTable" class="table table-hover"></div>
+
+
+<script>
+    var genders = [];
+    var controller =
+        {
+            loadData: function (filter) {
+                return $.get("/rest/basicusers/getAllUsers").done(function (data) {
+                    return data;});
+            },
+
+            insertItem: function(item) {
+                return $.ajax({
+                    contentType : "application/json",
+                    type: "POST",
+                    url: "rest/basicusers/insert",
+                    data: JSON.stringify(item)
+                });
+            },
+
+            updateItem: function(item) {
+                return $.ajax({
+                    contentType : "application/json",
+                    type: "PUT",
+                    url: "/rest/basicusers/update/"+item.id,
+                    data:  JSON.stringify(item)
+                });
+            },
+
+            deleteItem: function(item) {
+                return $.ajax({
+                    type: "DELETE",
+                    url: "rest/basicusers/delete/"+item.id,
+                    data:  JSON.stringify(item)
+                });
+            }
+        };
+
+    $.get(
+        {
+            url: "/rest/genders/getAll",
+            async: false
+        })
+        .done(function (data) {
+            genders = data;
+        });
+
+    $("#basicUsersTable").jsGrid({
+        width: "100%",
+        height: "600px",
+
+        inserting: true,
+        editing: true,
+        sorting: true,
+        paging: true,
+
+        autoload:true,
+
+        editButton: true,                               // show edit button
+        deleteButton: true,                             // show delete button
+                                                        // show clear filter button
+        modeSwitchButton: true,
+
+        deleteConfirm:"Вы действительно хотите удалить запись?",
+        noDataContent: "Записей не найдено",
+
+        loadIndication: true,
+        loadIndicationDelay: 500,
+
+        controller:controller,
+
+        fields: [
+            {title:"ID",type:"number", name:"id",validate: "required", width:30,align:"center", editing: false,inserting: false},
+
+            {title:"Имя",type:"text", name: "name",validate: "required"},
+
+            {title:"Фамилия",type:"text", name: "surname",validate: "required"},
+
+            {title:"Отчество",type:"text", name: "patronomyc"},
+
+            {title: "Год рождения", type: "dateField", name: "birthDate",validate: "required"},
+
+            {title: "Номер паспорта", type: "number", name: "passportNumber",validate: "required"},
+
+            {title:"Адрес",type:"text", name: "address",validate: "required"},
+
+            {title:"Номер телефона",type:"text", name: "phoneNumber",validate: "required"},
+
+            {
+                title: "Пол.",
+                type: "select",
+                name: "gender.id",
+                items: genders,
+                valueType: "number",
+                valueField: "id",
+                textField: "name"
+            },
+
+            { type: "control"}
+        ]
+    });
+
+</script>

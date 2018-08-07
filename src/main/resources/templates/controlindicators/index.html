@@ -9,15 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Панель управления</title>
+    <title>Dashboard Template for Bootstrap</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
     <div th:replace="fragments/headLinks"></div>
 </head>
-
 <body>
-
-
 <div class="container-fluid">
     <div th:replace="fragments/nav"></div>
 
@@ -26,7 +23,15 @@
         <div th:replace="fragments/sidebar"></div>
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-            <div th:replace="tables/booksMapsTable"></div>
+            <h1>Контрольный отчет</h1><br>
+            С <input th:type="date"/><br>
+            По <input th:type="date"/>
+            <select>
+            <option>Казахстан</option>
+            <option>Издания СНГ</option>
+            <option>Зарубежные издания</option>
+            </select><br>
+            <div th:replace="tables/indicatorsTable"></div>
         </main>
     </div>
 </div>

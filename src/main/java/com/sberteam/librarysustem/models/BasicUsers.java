@@ -34,9 +34,10 @@ public class BasicUsers {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Roles> roles;
 
-    private Date createdDate;
 
-    private Date updatedDate;
+    private Date createdDate = new Date();
+
+    private Date updatedDate = new Date();
 
     @Column(nullable = false)
     private boolean active = true;

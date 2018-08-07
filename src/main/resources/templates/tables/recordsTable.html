@@ -1,0 +1,40 @@
+<div id="recordsTable" class="table table-hover"></div>
+
+<script>
+
+
+    $.get("rest/parties/getAll").done(function (data) {
+        $("#recordsTable").jsGrid({
+            width: "100%",
+            height: "400px",
+
+            filtering: true,
+            sorting: true,
+            paging: true,
+
+            modeSwitchButton: true,
+
+            data: data,
+
+            fields: [
+                {title:"ID", name:"id", width:30,align:"center", editing: false,inserting: false},
+
+                {title:"Исполнитель пост-я",type:"number", name: "provider",width:150},
+
+                {title:"Дата пост-я",type:"text", name :"deliveryDate" },
+
+                {title:"Досумент",type:"text", name : "docTypes"},
+
+                {title:"Дата док-а",type:"text",name: "dateByDoc"},
+
+                {title:"Имя",type:"text",name:"name"},
+
+                {title:"Адресс",type:"text",name:"address"},
+
+                {title:"Передача",type:"text",name:"transfer"}
+            ]
+        });
+    });
+
+
+</script>
