@@ -23,6 +23,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
     private BooksCategoriesRepository booksCategoriesRepository;
     private BooksMapsRepository booksMapsRepository;
     private BooksLevelsRepository booksLevelsRepository;
+    private OrdersRepository ordersRepository;
 
 
     public DataBaseTEst(AuthenticableUsersRepository authenticableUsersRepository, BasicUsersRepository basicUsersRepository,
@@ -30,7 +31,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
                         BooksRepository booksRepository, PartiesRepository partiesRepository, ProvidersRepository providersRepository,
                         BooksCategoriesRepository booksCategoriesRepository,
                         BooksLevelsRepository booksLevelsRepository,
-                        BooksMapsRepository booksMapsRepository) {
+                        BooksMapsRepository booksMapsRepository,OrdersRepository ordersRepository) {
         this.authenticableUsersRepository = authenticableUsersRepository;
         this.basicUsersRepository = basicUsersRepository;
         this.rolesRepository = rolesRepository;
@@ -41,6 +42,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         this.booksCategoriesRepository = booksCategoriesRepository;
         this.booksLevelsRepository = booksLevelsRepository;
         this.booksMapsRepository = booksMapsRepository;
+        this.ordersRepository = ordersRepository;
     }
 
     @Override
@@ -94,6 +96,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         Books books = new Books("name","author",booksCategory,"publisher",new Date(),
                 "place",1222333l, booksMap,booksLevels,
                 4  , 25f, 23l, parties);
+        Orders order = new Orders(new java.sql.Date(new Date().getTime()),"23434","reader","author",basicUser,books,"","32243","232323");
 
 
         DocTypes docTypes2 = new DocTypes("Подписка");
@@ -218,5 +221,6 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
 //        partiesRepository.save(parties8);
 
         booksRepository.save(books);
+        ordersRepository.save(order);
     }
 }
