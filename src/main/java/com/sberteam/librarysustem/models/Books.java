@@ -15,15 +15,14 @@ public class Books {
     private String name;
 
     private String author;
+
     //Отрасль
     @ManyToOne
     @JoinColumn(name = "category_id")
-
     private BooksCategories bookCategory;
 
     private String publisher;
 
-    @DateTimeFormat(pattern = "YYYY")
     private Date year;
 
     private String publicationPlace;

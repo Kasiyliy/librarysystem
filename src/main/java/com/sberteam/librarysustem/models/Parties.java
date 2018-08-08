@@ -1,7 +1,4 @@
 package com.sberteam.librarysustem.models;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,7 +11,6 @@ public class Parties
 
     private Long partyNum;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date deliveryDate;
 
     @ManyToOne
@@ -25,7 +21,6 @@ public class Parties
 
     private Long docNum;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateByDoc;
 
     @ManyToOne

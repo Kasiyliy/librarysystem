@@ -5,6 +5,8 @@
     var docTypes = [];
     var provider = [];
 
+    var currPartySum = 0;
+    var currPartyCount = 0;
     $.get(
         {
             url: "/rest/docTypes/getAll",
@@ -78,12 +80,14 @@
            controller:partiesController,
            rowClick: function(args) {
                currPartyId = args.item.id;
+               currPartyCount = args.item.count;
+               currPartySum = args.item.sum;
                $("#booksTable").jsGrid("render");
                var $row = this.rowByItem(args.item);
-               $row.toggleClass("jsgrid-selected-row");
+               $row.toggleClass("highlight");
            },
            fields: [
-               {title:"ID",type:"number", name:"id",validate: "required", width:30,align:"center", editing: false,inserting: false},
+               {title:"ID",type:"number", name:"id",validate: "required", width:60,align:"center", editing: false,inserting: false},
 
                {title:"№ Партии",type:"number", name: "partyNum",validate: "required",width:150},
 

@@ -6,7 +6,7 @@
 
 .jsgrid {
     position: relative;
-    overflow: hidden;
+    overflow: scroll;
     font-size: 1em;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .jsgrid-grid-header {
-    overflow-x: hidden;
+    overflow-x: scroll;
     overflow-y: scroll;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -32,7 +32,7 @@
 }
 
 .jsgrid-grid-body {
-    overflow-x: auto;
+    overflow-x: scroll;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }

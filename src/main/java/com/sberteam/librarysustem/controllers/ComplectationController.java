@@ -11,8 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class ComplectationController {
 
     @GetMapping(path={"/inputDocuments"})
-    public ModelAndView inputDocuments() {
+    public ModelAndView inputDocumentsPage() {
         ModelAndView mw = new ModelAndView("/complectation/inputDocuments");
+        return mw;
+    }
+
+    @GetMapping(path={"/search"})
+    public ModelAndView searchPage() {
+        ModelAndView mw = new ModelAndView("/complectation/search");
         return mw;
     }
 
