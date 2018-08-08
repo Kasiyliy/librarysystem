@@ -25,7 +25,7 @@ public class RecordsController {
     @GetMapping(path = {"/" , ""})
     public ModelAndView index() {
 
-        ModelAndView mw = new ModelAndView("records/index");
+        ModelAndView mw = new ModelAndView("/records/index");
 
         mw.addObject("providers", providersRepository.findAll());
         mw.addObject("doctypes", docTypesRepository.findAll());
