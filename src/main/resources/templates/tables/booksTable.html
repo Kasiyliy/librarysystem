@@ -5,6 +5,7 @@
     var maps = [];
     var categories = [];
     var levels = [];
+    var languages = [];
 
     function checkPartySum(data) {
         var totalSum =0;
@@ -109,6 +110,14 @@
             maps = data;
         });
 
+    $.get(
+        {
+            url: "/rest/languages/getAll", async: false
+        })
+        .done(function (data) {
+            languages = data;
+        });
+
 
     $("#booksTable").jsGrid({
         width: "100%",
@@ -161,6 +170,16 @@
                 textField: "name"
             },
 
+            {
+                title: "Язык",
+                type: "select",
+                name: "language.id",
+                items: languages,
+                valueType: "text",
+                valueField: "id",
+                textField: "name"
+            },
+
             {title: "Издание", type: "text", name: "publisher"},
 
             {title: "Год", type: "dateField", name: "year"},
@@ -177,7 +196,7 @@
                 valueType: "number",
                 valueField: "id",
                 textField: "name"
-            },//
+            },
 
             {
                 title: "Ур.",
@@ -187,7 +206,7 @@
                 valueType: "number",
                 valueField: "id",
                 textField: "name"
-            },//
+            },
 
             {title: "Кол-во", type: "number", name: "count", width: 100},
 

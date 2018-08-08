@@ -37,6 +37,11 @@ public class Books {
     @JoinColumn(name = "level_id")
     private BooksLevels level;
 
+    @ManyToOne
+    @JoinColumn(name = "language_id")
+    private Languages language;
+
+
     private Integer count;
 
     private Float price;
@@ -209,22 +214,31 @@ public class Books {
 
     @Override
     public String toString() {
-        return "{" +
+        return "Books{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
-                ", bookCategory=" + bookCategory.getId()     +
+                ", bookCategory=" + bookCategory +
                 ", publisher='" + publisher + '\'' +
                 ", year=" + year +
                 ", publicationPlace='" + publicationPlace + '\'' +
                 ", tom_number=" + tom_number +
-                ", map=" + map.getId() +
-                ", level=" + level.getId() +
+                ", map=" + map +
+                ", level=" + level +
+                ", language=" + language +
                 ", count=" + count +
                 ", price=" + price +
                 ", sum=" + sum +
                 ", transferNumber=" + transferNumber +
                 ", party=" + party +
                 '}';
+    }
+
+    public Languages getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Languages language) {
+        this.language = language;
     }
 }
