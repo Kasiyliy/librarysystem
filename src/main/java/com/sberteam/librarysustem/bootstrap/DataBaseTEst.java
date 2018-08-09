@@ -24,6 +24,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
     private BooksMapsRepository booksMapsRepository;
     private BooksLevelsRepository booksLevelsRepository;
     private OrdersRepository ordersRepository;
+    private LanguagesRepository languagesRepository;
 
 
     public DataBaseTEst(AuthenticableUsersRepository authenticableUsersRepository, BasicUsersRepository basicUsersRepository,
@@ -31,7 +32,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
                         BooksRepository booksRepository, PartiesRepository partiesRepository, ProvidersRepository providersRepository,
                         BooksCategoriesRepository booksCategoriesRepository,
                         BooksLevelsRepository booksLevelsRepository,
-                        BooksMapsRepository booksMapsRepository,OrdersRepository ordersRepository) {
+                        BooksMapsRepository booksMapsRepository,OrdersRepository ordersRepository, LanguagesRepository languagesRepository) {
         this.authenticableUsersRepository = authenticableUsersRepository;
         this.basicUsersRepository = basicUsersRepository;
         this.rolesRepository = rolesRepository;
@@ -43,6 +44,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         this.booksLevelsRepository = booksLevelsRepository;
         this.booksMapsRepository = booksMapsRepository;
         this.ordersRepository = ordersRepository;
+        this.languagesRepository = languagesRepository;
     }
 
     @Override
@@ -92,10 +94,11 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
         Parties parties = new Parties(13213L,new Date(), docTypes, "Note", 351351L, new Date(),docTypes, 10, 2000f, provider,"Дома пушкина",
                 "Куда то вдаль");
         partiesRepository.save(parties);
-
+        Languages languages = new Languages("Казахский");
+        languagesRepository.save(languages);
         Books books = new Books("name","author",booksCategory,"publisher",new Date(),
                 "place",1222333l, booksMap,booksLevels,
-                4  , 25f, 23l, parties);
+                4  , 25f, 23l, parties,languages);
         Orders order = new Orders(new java.sql.Date(new Date().getTime()),"23434","reader","author",basicUser,books,"","32243","232323");
 
 
@@ -222,5 +225,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
 
         booksRepository.save(books);
         ordersRepository.save(order);
+
+
     }
 }

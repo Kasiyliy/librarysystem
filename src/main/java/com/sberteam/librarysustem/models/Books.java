@@ -60,7 +60,7 @@ public class Books {
 
     public Books(String name, String author, BooksCategories bookCategory, String publisher,
                  Date year, String publicationPlace, Long tom_number, BooksMaps map, BooksLevels level,
-                 Integer count, Float price, Long transferNumber, Parties party) {
+                 Integer count, Float price, Long transferNumber, Parties party,Languages languages) {
         this.name = name;
         this.author = author;
         this.bookCategory = bookCategory;
@@ -75,6 +75,7 @@ public class Books {
         this.sum = count*price;
         this.transferNumber = transferNumber;
         this.party = party;
+        this.language = languages;
     }
 
     public Long getId() {

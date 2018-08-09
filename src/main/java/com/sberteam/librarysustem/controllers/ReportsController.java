@@ -47,9 +47,9 @@ public class ReportsController {
 
     @PostMapping(path = "/exportExcel")
     public void export(HttpServletResponse response, HttpServletRequest request){
-        String from = request.getParameter("from");
-        String to = request.getParameter("to");
+
         String section = request.getParameter("section");
+
         try{
             if(section.equals("users")) {
                 List<BasicUsers> users = (List<BasicUsers>) basicUsersRepository.findAll();
@@ -58,14 +58,17 @@ public class ReportsController {
                 response.setContentType("application/vnd.ms-excel");
                 new SimpleExporter().gridExport(headers, users, "id, name, surname, patronomyc, ", response.getOutputStream());
             }else if (section.equals("books")){
+                String from = request.getParameter("from");
+                String to = request.getParameter("to");
+                String language = request.getParameter("language");
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
                 Date fromd = formatter.parse(from);
                 Date tod = formatter.parse(to);
-                List<Books> books = (List<Books>) booksRepository.queryFromTo(new java.sql.Date(fromd.getTime()),new java.sql.Date(tod.getTime()));
+                List<Books> books = (List<Books>) booksRepository.queryFromTo(new java.sql.Date(fromd.getTime()),new java.sql.Date(tod.getTime()),Long.parseLong(language));
                 List<String> headers = Arrays.asList("ID", "Автор", "Имя", "Цена" , "Место издательство", "Издательство", "Номер тома", "Номер перевода", "Год", "Категория", "Язык", "Уровень", "Карта", "Партия", "Количество");
                 response.addHeader("Content-Disposition", "attachment; filename = Books.xls");
                 response.setContentType("application/vnd.ms-excel");
-                new SimpleExporter().gridExport(headers, books, "id, author, name, count,publicationPlace,publisher,tom_number,transferNumber, year, bookCategory, language, level, map, party, count", response.getOutputStream());
+                new SimpleExporter().gridExport(headers, books, "id, author, name, count,publicationPlace,publisher,tom_number,transferNumber, year, bookCategory.name, language.name, level.name, map.name, party.partyNum, count", response.getOutputStream());
             }
             response.flushBuffer();
         }catch (Exception e){
