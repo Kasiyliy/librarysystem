@@ -23,10 +23,20 @@
         <div th:replace="fragments/sidebar"></div>
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-            <h1>Книга учета поступлений</h1><br>
-            С № партии <input th:type="text" /><br>
-            До № партии <input th:type="text" /><br>
-            <div th:replace="tables/recordsTable"></div>
+            <h1>Отчеты</h1><br>
+            <form th:action="@{reports/exportExcel}" method="post">
+                С <input th:type="date" name="from"/><br>
+                До <input th:type="date" name="to"/><br>
+                <select name = "section">
+                    <option value="books">Отчет по книгам</option>
+                    <option value="users">Отчет по Пользователям</option>
+                </select><br>
+                <select name = "language">
+                    <option value = "kaz">Русский</option>
+                    <option value="rus">Английсий</option>
+                </select><br>
+                <input th:type="submit" value="Скачать"/>
+            </form>
         </main>
     </div>
 </div>
