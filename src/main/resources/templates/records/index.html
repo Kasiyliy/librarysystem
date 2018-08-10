@@ -12,21 +12,21 @@
     <title>Панель управления</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
-    <div th:replace="fragments/headLinks"></div>
+    <div th:replace="fragments\headlinks"></div>
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="fragments/nav"></div>
+    <div th:replace="fragments\nav"></div>
 
     <div class="row">
 
-        <div th:replace="fragments/sidebar"></div>
+        <div th:replace="fragments\sidebar"></div>
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <h1>Книга учета поступлений</h1><br>
             С № партии <input th:type="text" /><br>
             До № партии <input th:type="text" /><br>
-            <div th:replace="tables/recordsTable"></div>
+            <div th:replace="tables\recordsTable"></div>
         </main>
     </div>
 </div>

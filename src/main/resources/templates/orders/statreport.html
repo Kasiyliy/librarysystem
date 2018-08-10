@@ -8,18 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Статестический отчет</title>
+    <title>Статистический отчет</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
-    <div th:replace="fragments/headLinks"></div>
+    <div th:replace="fragments\headlinks"></div>
 </head>
 <body>
 <div class="container-fluid">
-    <div th:replace="fragments/nav"></div>
+    <div th:replace="fragments\nav"></div>
 
     <div class="row">
 
-        <div th:replace="fragments/ordersSlidebar"></div>
+        <div th:replace="fragments\ordersSlidebar"></div>
 
         <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <form th:action="@{statreportexcel}" method="post">
