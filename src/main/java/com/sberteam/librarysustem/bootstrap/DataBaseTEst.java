@@ -49,7 +49,10 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+       // loadData();
+    }
 
+    public void loadData(){
         Roles role_guest = new Roles();
         role_guest.setName("ROLE_GUEST");
 
