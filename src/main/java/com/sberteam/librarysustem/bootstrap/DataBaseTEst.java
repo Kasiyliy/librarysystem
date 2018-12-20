@@ -49,7 +49,7 @@ public class DataBaseTEst implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-       // loadData();
+       loadData();
     }
 
     public void loadData(){

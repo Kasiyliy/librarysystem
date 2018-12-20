@@ -13,11 +13,6 @@ import org.springframework.context.annotation.Configuration;
 public class LibrarysystemApplication  extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(LibrarysystemApplication.class, args);
-
 	}
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(LibrarysystemApplication.class);
-	}
 }

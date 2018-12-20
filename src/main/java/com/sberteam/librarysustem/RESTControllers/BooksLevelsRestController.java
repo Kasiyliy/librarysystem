@@ -25,6 +25,7 @@ public class BooksLevelsRestController {
     @GetMapping("/getById/{id}")
     public BooksLevels getById(@PathVariable Long id){
         Optional<BooksLevels> booksCategory= booksLevelsRepository.findById(id);
+
         return booksCategory.orElse(null);
     }
 

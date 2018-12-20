@@ -27,10 +27,13 @@ public class SpringSecurityConfig  extends WebSecurityConfigurerAdapter{
                     .antMatchers("/js/**").permitAll()
                     .anyRequest().hasRole("ADMIN")
                     .and()
+                    .csrf().disable()
                 .formLogin()
                     .loginPage("/login").permitAll()
                     .and()
-                .logout().permitAll();
+                .logout().permitAll()
+                    .and()
+                    .csrf().disable();
     }
 
     @Override

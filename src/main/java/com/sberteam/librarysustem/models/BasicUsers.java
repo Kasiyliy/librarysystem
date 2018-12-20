@@ -60,20 +60,6 @@ public class BasicUsers {
         return id.hashCode();
     }
 
-    public BasicUsers(String name, String surname, String patronomyc, Date birthDate, Long passportNumber, String address, String phoneNumber, Gender gender, Set<Roles> roles, Date createdDate, Date updatedDate, boolean active) {
-        this.name = name;
-        this.surname = surname;
-        this.patronomyc = patronomyc;
-        this.birthDate = birthDate;
-        this.passportNumber = passportNumber;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.gender = gender;
-        this.roles = roles;
-        this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
-        this.active = active;
-    }
 
     public Long getId() {
         return id;
@@ -179,5 +165,18 @@ public class BasicUsers {
         this.active = active;
     }
 
-
+    public BasicUsers(String name, String surname, String patronomyc, Date birthDate, Long passportNumber, String address, String phoneNumber, Gender gender, Set<Roles> roles, Date createdDate, Date updatedDate, boolean active) {
+        this.name = name;
+        this.surname = surname;
+        this.patronomyc = patronomyc;
+        this.birthDate = birthDate;
+        this.passportNumber = passportNumber;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.roles = roles;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
+        this.active = active;
+    }
 }
